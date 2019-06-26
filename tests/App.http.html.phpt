@@ -4,7 +4,7 @@
  *
  * @noinspection PhpUnusedParameterInspection
  * @interpreter php-cgi
- * @outputmatchfile App.http.expected
+ * @outputmatchfile App.http.html.expected
  *
  * @link        https://github.com/webino/app
  * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
@@ -14,7 +14,6 @@
 
 namespace Webino;
 
-use Tester\Assert;
 use Tester\Environment;
 
 Environment::setup();
@@ -24,12 +23,8 @@ $core = new Core;
 $app = $core->bootstrap();
 
 
-$app->onDispatch(function (DispatchEvent $event) {
-    Assert::type(HttpRequest::class, $event->getRequest());
-});
-
 $app->onHttp(function (HttpEvent $event) {
-    return 'Hello Webino!';
+    return new HtmlResponse('<html><body>Hello Webino!</body></html>');
 });
 
 

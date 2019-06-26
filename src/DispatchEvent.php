@@ -18,6 +18,10 @@ class DispatchEvent extends Event implements
     DispatchEventInterface,
     InstanceFactoryMethodInterface
 {
+    use AppAwareTrait;
+    use RequestAwareTrait;
+    use ResponseAwareTrait;
+
     /**
      * @param CreateInstanceEventInterface $event
      * @return DispatchEvent
@@ -71,6 +75,8 @@ class DispatchEvent extends Event implements
                     default:
                         $event->setResponse($nextEvent->getResponse());
                 }
+
+                return $result;
             });
 
         }, DispatchEvent::MAIN);
@@ -81,61 +87,5 @@ class DispatchEvent extends Event implements
         }, DispatchEvent::FINISH);
 
         return $dispatchEvent;
-    }
-
-    /**
-     * Returns PHP environment execution request.
-     *
-     * @return RequestInterface
-     */
-    public function getRequest(): RequestInterface
-    {
-        return $this['request'];
-    }
-
-    /**
-     * Set PHP environment execution request.
-     *
-     * @param RequestInterface $request
-     */
-    protected function setRequest(RequestInterface $request): void
-    {
-        $this['request'] = $request;
-    }
-
-    /**
-     * Returns PHP environment execution response.
-     *
-     * @return ResponseInterface
-     */
-    public function getResponse(): ResponseInterface
-    {
-        return $this['response'] ?? new TextResponse;
-    }
-
-    /**
-     * Set PHP environment execution response.
-     *
-     * @param ResponseInterface $response
-     */
-    public function setResponse(ResponseInterface $response): void
-    {
-        $this['response'] = $response;
-    }
-
-    /**
-     * Returns application.
-     *
-     * @return AppInterface
-     * @throws NotAppException
-     */
-    public function getApp(): AppInterface
-    {
-        $target = $this->getTarget();
-        if ($target instanceof AppInterface) {
-            return $target;
-        }
-
-        throw new NotAppException;
     }
 }

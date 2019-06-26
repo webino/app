@@ -1,0 +1,11 @@
+Options -Indexes
+RedirectMatch 404 /\.git
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L,QSA]
+
+php_value session.save_path ../tmp/sessions

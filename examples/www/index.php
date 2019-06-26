@@ -22,18 +22,25 @@ $app = $core->bootstrap();
 
 $app->onHttp(function (HttpEvent $event) {
 
-    echo 'Hello Web!';
+//    $event->setResponse(new TextResponse('Hello Webino!'));
 
     // TODO
     return 'Hello Web!';
+
+//    return [
+//        'foo' => [
+//            'bar' => 'baz',
+//        ],
+//    ];
+
+//    return new LocationResponse('http://google.com');
+
+    //return new XmlResponse('<root>helloooooo</root>');
 
 });
 
 $app->onConsole(function (ConsoleEvent $event) {
 
-    echo 'Hello Console!';
-
-    // TODO
     return 'Hello Console!';
 
 });

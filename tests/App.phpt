@@ -2,7 +2,8 @@
 /**
  * Webino™ (http://webino.sk)
  *
- * @outputmatch BootstrapOK
+ * @outputmatchfile App.expected
+ * @interpreter php-cgi
  *
  * @link        https://github.com/webino/app
  * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
@@ -17,17 +18,10 @@ Tester\Environment::setup();
 
 $core = new Core;
 
-$core->onBootstrap(function () {
-
-    echo 'Bootstrap';
-});
-
-
 $app = $core->bootstrap();
 
-$app->onDispatch(function () {
-
-    echo 'OK';
+$app->onHttp(function () {
+    return 'OK';
 });
 
 $app->dispatch();

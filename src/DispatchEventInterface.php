@@ -24,6 +24,20 @@ interface DispatchEventInterface
     public function getRequest(): RequestInterface;
 
     /**
+     * Returns PHP environment execution response.
+     *
+     * @return ResponseInterface
+     */
+    public function getResponse(): ResponseInterface;
+
+    /**
+     * Set PHP environment execution response.
+     *
+     * @param ResponseInterface $response
+     */
+    public function setResponse(ResponseInterface $response): void;
+
+    /**
      * Returns application.
      *
      * @return AppInterface

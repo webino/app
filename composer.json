@@ -14,7 +14,8 @@
     "webino/exceptions": "1.*",
     "webino/instance-container": "dev-develop@dev",
     "webino/event-emitter": "dev-develop@dev",
-    "webino/request": "dev-develop@dev"
+    "webino/request": "dev-develop@dev",
+    "webino/response": "dev-develop@dev"
   },
   "require-dev": {
     "tracy/tracy": "2.*",

@@ -21,6 +21,7 @@ class DispatchEvent extends Event implements
     /**
      * @param CreateInstanceEventInterface $event
      * @return DispatchEvent
+     * @throws NotAppException
      */
     public static function create(CreateInstanceEventInterface $event): DispatchEvent
     {
@@ -47,9 +48,37 @@ class DispatchEvent extends Event implements
                 $nextEvent = $app->make(ConsoleEventInterface::class, $event);
             }
 
-            $nextEvent and $app->emit($nextEvent);
+            $nextEvent and $app->emit($nextEvent, function ($result) use ($event, $nextEvent) {
+
+                switch (true) {
+
+                    case $nextEvent instanceof ConsoleEventInterface:
+                        is_string($result) and $event->setResponse(new ConsoleResponse($result));
+                        break;
+
+                    case is_array($result):
+                        $event->setResponse(new JsonResponse($result));
+                        break;
+
+                    case is_string($result):
+                        $event->setResponse(new TextResponse($result));
+                        break;
+
+                    case $result instanceof ResponseInterface:
+                        $event->setResponse($result);
+                        break;
+
+                    default:
+                        $event->setResponse($nextEvent->getResponse());
+                }
+            });
 
         }, DispatchEvent::MAIN);
+
+        // responding
+        $app->onDispatch(function (DispatchEvent $event) {
+            $event->getResponse()->send();
+        }, DispatchEvent::FINISH);
 
         return $dispatchEvent;
     }
@@ -72,6 +101,26 @@ class DispatchEvent extends Event implements
     protected function setRequest(RequestInterface $request): void
     {
         $this['request'] = $request;
+    }
+
+    /**
+     * Returns PHP environment execution response.
+     *
+     * @return ResponseInterface
+     */
+    public function getResponse(): ResponseInterface
+    {
+        return $this['response'] ?? new TextResponse;
+    }
+
+    /**
+     * Set PHP environment execution response.
+     *
+     * @param ResponseInterface $response
+     */
+    public function setResponse(ResponseInterface $response): void
+    {
+        $this['response'] = $response;
     }
 
     /**

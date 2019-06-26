@@ -2,8 +2,9 @@
 /**
  * Webino™ (http://webino.sk)
  *
- * @noinspection PhpUndefinedClassInspection
+ * @noinspection PhpUnusedParameterInspection
  * @interpreter php
+ * @outputmatch Hello Webino!
  *
  * @link        https://github.com/webino/app
  * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
@@ -11,12 +12,12 @@
  * @license     BSD-3-Clause
  */
 
-use Tester\Assert;
-use Webino\Core;
-use Webino\DispatchEvent;
-use Webino\ConsoleRequest;
+namespace Webino;
 
-Tester\Environment::setup();
+use Tester\Assert;
+use Tester\Environment;
+
+Environment::setup();
 
 
 $core = new Core;
@@ -26,6 +27,10 @@ $app = $core->bootstrap();
 $app->onDispatch(function (DispatchEvent $event) {
 
     Assert::type(ConsoleRequest::class, $event->getRequest());
+});
+
+$app->onConsole(function (ConsoleEvent $event) {
+    return 'Hello Webino!';
 });
 
 

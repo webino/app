@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfc5b99a8e9feb83cf3a45c2bae02149",
+    "content-hash": "135c9c9930c44fe389d3ea1c6e3570f8",
     "packages": [
         {
             "name": "psr/container",
@@ -239,6 +239,53 @@
             ],
             "description": "Simple PHP environment request implementation.",
             "time": "2019-06-24T14:09:39+00:00"
+        },
+        {
+            "name": "webino/response",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webino/response.git",
+                "reference": "7cdbf1663edb72beaf18f30ab6c683176be2e594"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webino/response/zipball/7cdbf1663edb72beaf18f30ab6c683176be2e594",
+                "reference": "7cdbf1663edb72beaf18f30ab6c683176be2e594",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "0.*",
+                "squizlabs/php_codesniffer": "3.*",
+                "tracy/tracy": "2.*",
+                "webino/testing": "1.*"
+            },
+            "suggest": {
+                "tracy/tracy": "Better debug."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webino\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Bacinsky",
+                    "email": "peter@bacinsky.sk"
+                }
+            ],
+            "description": "Simple PHP environment response implementation.",
+            "time": "2019-06-26T15:07:42+00:00"
         }
     ],
     "packages-dev": [
@@ -1182,16 +1229,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d50bbeeb0e17e6dd4124ea391eff235e932cbf64"
+                "reference": "b592b26a24265a35172d8a2094d8b10f22b7cc39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/d50bbeeb0e17e6dd4124ea391eff235e932cbf64",
-                "reference": "d50bbeeb0e17e6dd4124ea391eff235e932cbf64",
+                "url": "https://api.github.com/repos/symfony/console/zipball/b592b26a24265a35172d8a2094d8b10f22b7cc39",
+                "reference": "b592b26a24265a35172d8a2094d8b10f22b7cc39",
                 "shasum": ""
             },
             "require": {
@@ -1253,20 +1300,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-06-05T13:25:51+00:00"
+            "time": "2019-06-13T11:03:18+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "b3d4f4c0e4eadfdd8b296af9ca637cfbf51d8176"
+                "reference": "33c21f7d5d3dc8a140c282854a7e13aeb5d0f91a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/b3d4f4c0e4eadfdd8b296af9ca637cfbf51d8176",
-                "reference": "b3d4f4c0e4eadfdd8b296af9ca637cfbf51d8176",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/33c21f7d5d3dc8a140c282854a7e13aeb5d0f91a",
+                "reference": "33c21f7d5d3dc8a140c282854a7e13aeb5d0f91a",
                 "shasum": ""
             },
             "require": {
@@ -1302,7 +1349,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-26T20:47:49+00:00"
+            "time": "2019-06-13T11:03:18+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1705,7 +1752,8 @@
     "stability-flags": {
         "webino/instance-container": 20,
         "webino/event-emitter": 20,
-        "webino/request": 20
+        "webino/request": 20,
+        "webino/response": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

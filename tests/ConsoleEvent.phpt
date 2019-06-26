@@ -11,12 +11,12 @@
  * @license     BSD-3-Clause
  */
 
-use Tester\Assert;
-use Webino\Core;
-use Webino\ConsoleEvent;
-use Webino\ConsoleRequest;
+namespace Webino;
 
-Tester\Environment::setup();
+use Tester\Assert;
+use Tester\Environment;
+
+Environment::setup();
 
 
 $core = new Core;

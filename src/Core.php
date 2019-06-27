@@ -31,16 +31,15 @@ final class Core extends AbstractApp implements CoreInterface
     /**
      * Application bootstrapping
      *
+     * @param BootstrapEventInterface|null $bootstrapEvent
      * @return AppInterface
      */
-    public function bootstrap(): AppInterface
+    public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppInterface
     {
-        // TODO
-
-        $app = $this->get(AppInterface::class);
-
-        $this->emit(BootstrapEvent::class);
-
+        /** @var AppInterface $app */
+        $app = $this->make(AppInterface::class);
+        $app->setEventDispatcher($this->getEventDispatcher());
+        $app->emit($event ?? $app->make(BootstrapEventInterface::class, $this));
         return $app;
     }
 }

@@ -19,7 +19,8 @@ interface AppInterface extends AbstractAppInterface
     /**
      * Request responding
      *
+     * @param RequestInterface|null $request
      * @return void
      */
-    public function dispatch(): void;
+    public function dispatch(RequestInterface $request = null): void;
 }

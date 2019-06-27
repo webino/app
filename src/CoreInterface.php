@@ -28,7 +28,8 @@ interface CoreInterface extends AbstractAppInterface
     /**
      * Application bootstrapping
      *
+     * @param BootstrapEventInterface|null $bootstrapEvent
      * @return AppInterface
      */
-    public function bootstrap(): AppInterface;
+    public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppInterface;
 }

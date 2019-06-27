@@ -19,11 +19,13 @@ final class App extends AbstractApp implements AppInterface
     /**
      * Request responding
      *
+     * @param RequestInterface|null $request
      * @return void
      */
-    public function dispatch(): void
+    public function dispatch(RequestInterface $request = null): void
     {
-        $event = $this->make(DispatchEvent::class, $this);
+        /** @var DispatchEvent $event */
+        $event = $this->make(DispatchEvent::class, $this, $request);
         $this->emit($event);
     }
 }

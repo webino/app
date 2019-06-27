@@ -36,7 +36,7 @@
     "psr-4": {
       "Webino\\": [
         "tests/src",
-        "examples/src/routes"
+        "examples/system/src/routes"
       ]
     }
   },

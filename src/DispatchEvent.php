@@ -34,7 +34,7 @@ class DispatchEvent extends Event implements
     {
         $container = $event->getContainer();
         $params = $event->getParameters();
-        $request = $container->get(RequestInterface::class);
+        $request = $params[1] ?? $container->get(RequestInterface::class);
         $dispatchEvent = new self(null, $params[0] ?? null);
         $dispatchEvent->setRequest($request);
 

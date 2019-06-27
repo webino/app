@@ -8,4 +8,4 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L,QSA]
 
-php_value session.save_path ../tmp/sessions
+php_value session.save_path ../system/tmp/sessions

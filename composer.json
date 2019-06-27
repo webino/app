@@ -12,9 +12,12 @@
   "require": {
     "php": "~7.1",
     "webino/exceptions": "1.*",
+    "webino/var-export-php": "dev-develop",
     "webino/recursive-directory-regex-iterator": "dev-develop",
+    "webino/each-file-class-implements": "dev-develop",
     "webino/instance-container": "dev-develop",
     "webino/event-emitter": "dev-develop",
+    "webino/filesystem": "dev-develop",
     "webino/request": "dev-develop",
     "webino/response": "dev-develop"
   },

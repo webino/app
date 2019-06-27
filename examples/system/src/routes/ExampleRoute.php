@@ -9,7 +9,7 @@ namespace Webino;
  */
 class ExampleRoute extends AbstractRoute implements RegexRouteInterface
 {
-    const PATTERN = '~^example$~';
+    const MATCH = '~^example$~';
 
     public function onRoute(AbstractRoute $route)
     {

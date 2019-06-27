@@ -17,7 +17,7 @@ namespace Webino;
 use Tester\Environment;
 
 Environment::setup();
-chdir(__DIR__ . '/../examples/www');
+chdir(__DIR__ . '/../examples');
 
 
 $container = new InstanceContainer;

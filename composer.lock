@@ -4,8 +4,97 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ab73ca7205419483823fda67d524bc3",
+    "content-hash": "86777000deac66d9dbf903c552e05abb",
     "packages": [
+        {
+            "name": "knplabs/gaufrette",
+            "version": "v0.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/Gaufrette.git",
+                "reference": "1d44b7ac74256a240704b0fb16d2d66360511a07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/1d44b7ac74256a240704b0fb16d2d66360511a07",
+                "reference": "1d44b7ac74256a240704b0fb16d2d66360511a07",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "conflict": {
+                "microsoft/windowsazure": "<0.4.3"
+            },
+            "require-dev": {
+                "akeneo/phpspec-skip-example-extension": "^4.0",
+                "amazonwebservices/aws-sdk-for-php": "1.5.*",
+                "aws/aws-sdk-php": "^2.4.12||~3",
+                "doctrine/dbal": ">=2.3",
+                "dropbox-php/dropbox-php": "*",
+                "google/apiclient": "~1.1.3",
+                "league/flysystem": "~1.0",
+                "microsoft/azure-storage-blob": "^1.0",
+                "mikey179/vfsstream": "~1.2.0",
+                "mongodb/mongodb": "^1.1",
+                "phpseclib/phpseclib": "^2.0",
+                "phpspec/phpspec": "~5.1",
+                "phpunit/phpunit": "~7.5",
+                "rackspace/php-opencloud": "^1.9.2"
+            },
+            "suggest": {
+                "ext-curl": "*",
+                "ext-fileinfo": "This extension is used to automatically detect the content-type of a file in the AwsS3, OpenCloud, AzureBlogStorage and GoogleCloudStorage adapters",
+                "ext-mbstring": "*",
+                "gaufrette/aws-s3-adapter": "to use AwsS3 adapter (supports SDK v2 and v3)",
+                "gaufrette/azure-blob-storage-adapter": "to use AzureBlobStorage adapter",
+                "gaufrette/doctrine-dbal-adapter": "to use DBAL adapter",
+                "gaufrette/flysystem-adapter": "to use Flysystem adapter",
+                "gaufrette/ftp-adapter": "to use Ftp adapter",
+                "gaufrette/gridfs-adapter": "to use GridFS adapter",
+                "gaufrette/in-memory-adapter": "to use InMemory adapter",
+                "gaufrette/local-adapter": "to use Local adapter",
+                "gaufrette/opencloud-adapter": "to use Opencloud adapter",
+                "gaufrette/phpseclib-sftp-adapter": "to use PhpseclibSftp adapter",
+                "gaufrette/zip-adapter": "to use Zip adapter",
+                "google/apiclient": "to use GoogleCloudStorage adapter",
+                "knplabs/knp-gaufrette-bundle": "to use with Symfony2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Gaufrette": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "The contributors",
+                    "homepage": "http://github.com/knplabs/Gaufrette/contributors"
+                },
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                }
+            ],
+            "description": "PHP library that provides a filesystem abstraction layer",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "abstraction",
+                "file",
+                "filesystem",
+                "media"
+            ],
+            "time": "2019-06-06T09:56:58+00:00"
+        },
         {
             "name": "psr/container",
             "version": "1.0.0",
@@ -54,6 +143,50 @@
                 "psr"
             ],
             "time": "2017-02-14T16:28:37+00:00"
+        },
+        {
+            "name": "webino/each-file-class-implements",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webino/each-file-class-implements.git",
+                "reference": "51ebef201b2ddaa3f855dcf25620e372407a9a1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webino/each-file-class-implements/zipball/51ebef201b2ddaa3f855dcf25620e372407a9a1f",
+                "reference": "51ebef201b2ddaa3f855dcf25620e372407a9a1f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1",
+                "webino/recursive-directory-regex-iterator": "dev-develop"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "0.*",
+                "squizlabs/php_codesniffer": "3.*",
+                "webino/testing": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webino\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Bacinsky",
+                    "email": "peter@bacinsky.sk"
+                }
+            ],
+            "description": "Call callback iterating over class files matching regular expression implementing interface.",
+            "time": "2019-06-27T21:43:06+00:00"
         },
         {
             "name": "webino/event-emitter",
@@ -145,6 +278,52 @@
             "time": "2019-03-21T16:37:06+00:00"
         },
         {
+            "name": "webino/filesystem",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webino/filesystem.git",
+                "reference": "246c45d4fc4c219aae09b995d0a0ad4b593ffdd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webino/filesystem/zipball/246c45d4fc4c219aae09b995d0a0ad4b593ffdd6",
+                "reference": "246c45d4fc4c219aae09b995d0a0ad4b593ffdd6",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/gaufrette": "0.*",
+                "php": "~7.1",
+                "webino/event-emitter": "@dev",
+                "webino/instance-container": "dev-develop"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "0.*",
+                "squizlabs/php_codesniffer": "3.*",
+                "webino/testing": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webino\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Bacinsky",
+                    "email": "peter@bacinsky.sk"
+                }
+            ],
+            "description": "Filesystem abstraction layer for Webino.",
+            "time": "2019-06-27T20:40:18+00:00"
+        },
+        {
             "name": "webino/instance-container",
             "version": "dev-develop",
             "source": {
@@ -197,12 +376,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/recursive-directory-regex-iterator.git",
-                "reference": "e1d6d98d6af5b409eb78fb6ca3cb44e35c475da9"
+                "reference": "3e81b948db9555846f3e9309c540159714f4bc38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/recursive-directory-regex-iterator/zipball/e1d6d98d6af5b409eb78fb6ca3cb44e35c475da9",
-                "reference": "e1d6d98d6af5b409eb78fb6ca3cb44e35c475da9",
+                "url": "https://api.github.com/repos/webino/recursive-directory-regex-iterator/zipball/3e81b948db9555846f3e9309c540159714f4bc38",
+                "reference": "3e81b948db9555846f3e9309c540159714f4bc38",
                 "shasum": ""
             },
             "require": {
@@ -232,7 +411,7 @@
                 }
             ],
             "description": "Recursive Directory Regex Iterator.",
-            "time": "2019-06-26T18:47:17+00:00"
+            "time": "2019-06-27T20:39:53+00:00"
         },
         {
             "name": "webino/request",
@@ -240,12 +419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/request.git",
-                "reference": "57f6388b185f96fd28a8cf387e245e0d59d7279c"
+                "reference": "26a17bdb3954ecfe4b8cf52e836b773263a2af80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/request/zipball/57f6388b185f96fd28a8cf387e245e0d59d7279c",
-                "reference": "57f6388b185f96fd28a8cf387e245e0d59d7279c",
+                "url": "https://api.github.com/repos/webino/request/zipball/26a17bdb3954ecfe4b8cf52e836b773263a2af80",
+                "reference": "26a17bdb3954ecfe4b8cf52e836b773263a2af80",
                 "shasum": ""
             },
             "require": {
@@ -281,7 +460,7 @@
                 }
             ],
             "description": "Simple PHP environment request implementation.",
-            "time": "2019-06-26T15:44:44+00:00"
+            "time": "2019-06-27T17:41:48+00:00"
         },
         {
             "name": "webino/response",
@@ -330,6 +509,49 @@
             ],
             "description": "Simple PHP environment response implementation.",
             "time": "2019-06-26T18:49:53+00:00"
+        },
+        {
+            "name": "webino/var-export-php",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webino/var-export-php.git",
+                "reference": "5fca52b11cac04ac55fbb2504d5ff10068531875"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webino/var-export-php/zipball/5fca52b11cac04ac55fbb2504d5ff10068531875",
+                "reference": "5fca52b11cac04ac55fbb2504d5ff10068531875",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "0.*",
+                "squizlabs/php_codesniffer": "3.*",
+                "webino/testing": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webino\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Bacinsky",
+                    "email": "peter@bacinsky.sk"
+                }
+            ],
+            "description": "Exports variable as PHP file code.",
+            "time": "2019-06-27T21:19:52+00:00"
         }
     ],
     "packages-dev": [
@@ -1794,9 +2016,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "webino/var-export-php": 20,
         "webino/recursive-directory-regex-iterator": 20,
+        "webino/each-file-class-implements": 20,
         "webino/instance-container": 20,
         "webino/event-emitter": 20,
+        "webino/filesystem": 20,
         "webino/request": 20,
         "webino/response": 20
     },

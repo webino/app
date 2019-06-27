@@ -14,7 +14,7 @@
 namespace Webino;
 
 require __DIR__ . '/../../vendor/autoload.php';
-chdir(__DIR__);
+chdir(__DIR__ . '/..');
 
 
 $core = new Core;

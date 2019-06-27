@@ -16,7 +16,10 @@ namespace Webino;
  */
 class DispatchEvent extends Event implements
     DispatchEventInterface,
-    InstanceFactoryMethodInterface
+    InstanceFactoryMethodInterface,
+    AppAwareInterface,
+    RequestAwareInterface,
+    ResponseAwareInterface
 {
     use AppAwareTrait;
     use RequestAwareTrait;

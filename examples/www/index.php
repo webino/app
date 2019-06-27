@@ -13,131 +13,71 @@
 
 namespace Webino;
 
-use PHP_CodeSniffer\Generators\Text;
-
 require __DIR__ . '/../../vendor/autoload.php';
 
-class HttpRoute extends Event
+
+class DefaultRoute extends AbstractRoute
 {
-    use AppAwareTrait;
-    use RequestAwareTrait;
-    use ResponseAwareTrait;
-
-    public static function create(CreateInstanceEventInterface $event)
+    public function onRoute(AbstractRoute $route)
     {
-        $route = static::createRoute($event);
-        $app = $route->getApp();
-        $app->on(static::class, [$route, 'onRoute']);
-        return $route;
-    }
-
-    public static function createRoute(CreateInstanceEventInterface $event): HttpRoute
-    {
-        $params = $event->getParameters();
-        return new static($params[0] ?? null);
-    }
-
-    public function onRoute(HttpRoute $route)
-    {
-
+        return 'Not Found';
     }
 }
 
-class DefaultRoute extends HttpRoute implements InstanceFactoryMethodInterface
+class RegexRouteMap implements RegexRouteMapInterface
 {
-    public function onRoute(HttpRoute $route)
+    public function getIterator(): iterable
     {
-//        $route->setResponse(new TextResponse('Hello'));
-
-        return 'Pokus';
-
-//        return ['x' => 'y'];
+        $filePath = __DIR__ . '/../data/compiled/regex-route-map.php';
+        return new \ArrayIterator(require $filePath);
+//        return new \ArrayIterator([
+//            HomeRoute::PATTERN => HomeRoute::class,
+//            ExampleRoute::PATTERN => ExampleRoute::class,
+//        ]);
     }
-}
-
-class HomeRoute extends HttpRoute
-{
-    const PATTERN = '~^$~';
-}
-
-
-class ExampleRoute extends HttpRoute
-{
-    const PATTERN = '~^example$~';
 }
 
 $core = new Core;
 $app = $core->bootstrap();
 
+$app->onHttp($app->get(HttpRegexRouter::class));
 
-$app->onHttp(function (HttpEvent $event) {
+$app->onConsole(function (ConsoleEvent $event) {
 
-    $app = $event->getApp();
 
-    $request = $event->getHttpRequest();
-    $routePath = $request->getRoutePath();
+    $regexRouteMap = [];
 
-    $routeMap = [
-        HomeRoute::PATTERN => HomeRoute::class,
-        ExampleRoute::PATTERN => ExampleRoute::class,
-    ];
+    $dir = __DIR__  . '/../src/routes';;
+    $iterator = new RecursiveDirectoryRegexIterator($dir, '~Route.php$~');
+    foreach ($iterator as $routeFile) {
+        $routeClass = 'Webino\\' . substr(basename($routeFile), 0, -4);
+        $implements = class_implements($routeClass);
 
-    $handler = function ($result, HttpEvent $event, HttpRoute $route) {
-        switch (true) {
-
-            case is_array($result):
-                $event->setResponse(new JsonResponse($result));
-                break;
-
-            case is_string($result):
-                $event->setResponse(new TextResponse($result));
-                break;
-
-            case $result instanceof ResponseInterface:
-                $event->setResponse($result);
-                break;
-
-            default:
-                $event->setResponse($route->getResponse());
-        }
-
-        return $result;
-    };
-
-    foreach ($routeMap as $regex => $route) {
-        $matches = [];
-        if (preg_match($regex, $routePath, $matches)) {
-            $route = $app->make($route, $event, $matches);
-            $app->emit($route, function ($result) use ($event, $route, $handler) {
-                return $handler($result, $event, $route);
-            });
-            return;
+        if (!empty($implements[RegexRouteInterface::class])) {
+            $pattern = constant($routeClass . '::PATTERN');
+            $regexRouteMap[$pattern] = $routeClass;
         }
     }
 
-    $route = $app->make(DefaultRoute::class, $event);
-    $app->emit($route, function ($result) use ($event, $route, $handler) {
-        return $handler($result, $event, $route);
-    });
-});
-
-$app->onConsole(function (ConsoleEvent $event) {
+    $export = '<?php return ' . var_export($regexRouteMap, true) . ';';
+    $filePath = __DIR__ . '/../data/compiled/regex-route-map.php';
+    file_put_contents($filePath, $export);
 
     return 'Hello Console!';
 
 });
 
 
-$app->on(DefaultRoute::class, function (DefaultRoute $route) {
-//    die('KO');
-});
-
-$app->on(HomeRoute::class, function (HomeRoute $route) {
-    return 'HOME';
-});
-
-$app->on(ExampleRoute::class, function (ExampleRoute $route) {
-    return 'Example';
-});
+//$app->on(DefaultRoute::class, function (DefaultRoute $route) {
+//    return 'Not Found';
+//});
+//
+//$app->on(HomeRoute::class, function (HomeRoute $route) {
+//    return 'HOME';
+//});
+//
+//$app->on(ExampleRoute::class, function (ExampleRoute $route) {
+//    return 'Example';
+//});
 
 $app->dispatch();

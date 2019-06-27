@@ -12,10 +12,11 @@
   "require": {
     "php": "~7.1",
     "webino/exceptions": "1.*",
-    "webino/instance-container": "dev-develop@dev",
-    "webino/event-emitter": "dev-develop@dev",
-    "webino/request": "dev-develop@dev",
-    "webino/response": "dev-develop@dev"
+    "webino/recursive-directory-regex-iterator": "dev-develop",
+    "webino/instance-container": "dev-develop",
+    "webino/event-emitter": "dev-develop",
+    "webino/request": "dev-develop",
+    "webino/response": "dev-develop"
   },
   "require-dev": {
     "tracy/tracy": "2.*",
@@ -34,7 +35,8 @@
   "autoload-dev": {
     "psr-4": {
       "Webino\\": [
-        "tests/src"
+        "tests/src",
+        "examples/src/routes"
       ]
     }
   },

@@ -55,30 +55,15 @@ class DispatchEvent extends Event implements
                 $nextEvent = $app->make(ConsoleEventInterface::class, $event);
             }
 
-            $nextEvent and $app->emit($nextEvent, function ($result) use ($event, $nextEvent) {
+            $nextEvent and $app->emit($nextEvent, function ($result) use ($event, $nextEvent, $app) {
 
-                switch (true) {
-
-                    case $nextEvent instanceof ConsoleEventInterface:
-                        is_string($result) and $event->setResponse(new ConsoleResponse($result));
-                        break;
-
-                    case is_array($result):
-                        $event->setResponse(new JsonResponse($result));
-                        break;
-
-                    case is_string($result):
-                        $event->setResponse(new TextResponse($result));
-                        break;
-
-                    case $result instanceof ResponseInterface:
-                        $event->setResponse($result);
-                        break;
-
-                    default:
-                        $event->setResponse($nextEvent->getResponse());
+                if ($nextEvent instanceof ConsoleEventInterface) {
+                    is_string($result) and $event->setResponse(new ConsoleResponse($result));
+                    return $result;
                 }
 
+                $response = $app->make(ResponseInterface::class, $result) ?? $nextEvent->getResponse();
+                $event->setResponse($response);
                 return $result;
             });
 

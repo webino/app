@@ -28,12 +28,41 @@ class RegexRouteMap implements RegexRouteMapInterface
 {
     public function getIterator(): iterable
     {
-        $filePath = __DIR__ . '/../data/compiled/regex-route-map.php';
+        $this->isGenerated() or $this->generate();
+
+        // TODO filesystem
+        $filePath = __DIR__ . '/../data/generated/regex-route-map.php';
         return new \ArrayIterator(require $filePath);
-//        return new \ArrayIterator([
-//            HomeRoute::PATTERN => HomeRoute::class,
-//            ExampleRoute::PATTERN => ExampleRoute::class,
-//        ]);
+    }
+
+    public function isGenerated()
+    {
+        // TODO filesystem
+        $filePath = __DIR__ . '/../data/generated/regex-route-map.php';
+        return file_exists($filePath);
+    }
+
+    public function generate()
+    {
+        $regexRouteMap = [];
+
+        // TODO filesystem
+        $dir = __DIR__  . '/../src/routes';;
+        $iterator = new RecursiveDirectoryRegexIterator($dir, '~Route.php$~');
+        foreach ($iterator as $routeFile) {
+            $routeClass = 'Webino\\' . substr(basename($routeFile), 0, -4);
+            $implements = class_implements($routeClass);
+
+            if (!empty($implements[RegexRouteInterface::class])) {
+                $pattern = constant($routeClass . '::PATTERN');
+                $regexRouteMap[$pattern] = $routeClass;
+            }
+        }
+
+        $export = '<?php return ' . var_export($regexRouteMap, true) . ';';
+        // TODO filesystem
+        $filePath = __DIR__ . '/../data/generated/regex-route-map.php';
+        file_put_contents($filePath, $export);
     }
 }
 
@@ -45,23 +74,11 @@ $app->onHttp($app->get(HttpRegexRouter::class));
 $app->onConsole(function (ConsoleEvent $event) {
 
 
-    $regexRouteMap = [];
+    $app = $event->getApp();
+    /** @var RegexRouteMap $regexRouteMap */
+    $regexRouteMap = $app->get(RegexRouteMap::class);
 
-    $dir = __DIR__  . '/../src/routes';;
-    $iterator = new RecursiveDirectoryRegexIterator($dir, '~Route.php$~');
-    foreach ($iterator as $routeFile) {
-        $routeClass = 'Webino\\' . substr(basename($routeFile), 0, -4);
-        $implements = class_implements($routeClass);
-
-        if (!empty($implements[RegexRouteInterface::class])) {
-            $pattern = constant($routeClass . '::PATTERN');
-            $regexRouteMap[$pattern] = $routeClass;
-        }
-    }
-
-    $export = '<?php return ' . var_export($regexRouteMap, true) . ';';
-    $filePath = __DIR__ . '/../data/compiled/regex-route-map.php';
-    file_put_contents($filePath, $export);
+    $regexRouteMap->generate();
 
     return 'Hello Console!';
 

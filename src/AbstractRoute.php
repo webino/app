@@ -43,6 +43,5 @@ abstract class AbstractRoute extends Event implements
      */
     public function onRoute(AbstractRoute $route)
     {
-
     }
 }

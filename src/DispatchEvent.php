@@ -49,7 +49,6 @@ class DispatchEvent extends Event implements
             if ($request instanceof HttpRequestInterface) {
                 /** @var HttpEventInterface $nextEvent */
                 $nextEvent = $app->make(HttpEventInterface::class, $event);
-
             } elseif ($request instanceof ConsoleRequestInterface) {
                 /** @var ConsoleEventInterface $nextEvent */
                 $nextEvent = $app->make(ConsoleEventInterface::class, $event);
@@ -66,7 +65,6 @@ class DispatchEvent extends Event implements
                 $event->setResponse($response);
                 return $result;
             });
-
         }, DispatchEvent::MAIN);
 
         // responding

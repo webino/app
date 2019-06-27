@@ -18,7 +18,6 @@ class Response implements InstanceFactoryMethodInterface
         $result = $params[0] ?? null;
 
         switch (true) {
-
             case is_array($result):
                 return new JsonResponse($result);
 

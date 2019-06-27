@@ -8,7 +8,8 @@ namespace Webino;
  */
 class HttpRegexRouter
 {
-    public function __invoke(HttpEvent $event) {
+    public function __invoke(HttpEvent $event)
+    {
 
         $app = $event->getApp();
 

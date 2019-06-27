@@ -14,7 +14,7 @@ namespace Webino;
  * Interface DispatchEventInterface
  * @package app
  */
-interface DispatchEventInterface
+interface DispatchEventInterface extends EventInterface
 {
     /**
      * Returns PHP environment execution request.

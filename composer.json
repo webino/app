@@ -19,7 +19,8 @@
     "webino/event-emitter": "dev-develop",
     "webino/filesystem": "dev-develop",
     "webino/request": "dev-develop",
-    "webino/response": "dev-develop"
+    "webino/response": "dev-develop",
+    "webino/console": "dev-develop"
   },
   "require-dev": {
     "tracy/tracy": "2.*",

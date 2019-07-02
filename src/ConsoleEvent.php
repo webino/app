@@ -40,4 +40,9 @@ class ConsoleEvent extends DispatchEvent implements ConsoleEventInterface
 
         throw new NotConsoleRequestException;
     }
+
+    public function getConsole(): ConsoleInterface
+    {
+        // TODO: Implement getConsole() method.
+    }
 }

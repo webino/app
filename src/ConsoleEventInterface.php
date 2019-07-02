@@ -23,4 +23,9 @@ interface ConsoleEventInterface extends DispatchEventInterface
      * @throws \Exception
      */
     public function getConsoleRequest(): ConsoleRequestInterface;
+
+    /**
+     * @return ConsoleInterface
+     */
+    public function getConsole(): ConsoleInterface;
 }

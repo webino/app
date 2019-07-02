@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": "~7.1",
-    "webino/exceptions": "1.*",
+    "webino/exceptions": "dev-develop",
     "webino/var-export-php": "dev-develop",
     "webino/recursive-directory-regex-iterator": "dev-develop",
     "webino/each-file-class-implements": "dev-develop",
@@ -26,8 +26,8 @@
     "tracy/tracy": "2.*",
     "phpstan/phpstan": "0.*",
     "squizlabs/php_codesniffer": "3.*",
-    "webino/testing": "1.*",
-    "webino/develop": "1.*"
+    "webino/testing": "dev-develop",
+    "webino/develop": "dev-develop"
   },
   "autoload": {
     "psr-4": {

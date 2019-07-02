@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3228cb9293ed890f1861ff89aa22c432",
+    "content-hash": "a712f84ae86b01149b8e59ec749c82d5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -933,18 +933,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/console.git",
-                "reference": "6be70a5aeb57bf8c17350f09f66945a487eb98d3"
+                "reference": "5a85bf0999843895dcccebcec128de92c88392e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/console/zipball/6be70a5aeb57bf8c17350f09f66945a487eb98d3",
-                "reference": "6be70a5aeb57bf8c17350f09f66945a487eb98d3",
+                "url": "https://api.github.com/repos/webino/console/zipball/5a85bf0999843895dcccebcec128de92c88392e1",
+                "reference": "5a85bf0999843895dcccebcec128de92c88392e1",
                 "shasum": ""
             },
             "require": {
                 "league/climate": "3.*",
                 "php": "~7.1",
-                "psy/psysh": "0.*"
+                "psy/psysh": "0.*",
+                "webino/exceptions": "dev-develop"
             },
             "require-dev": {
                 "phpstan/phpstan": "0.*",
@@ -970,7 +971,7 @@
                 }
             ],
             "description": "Command line implementation library.",
-            "time": "2019-07-02T00:47:55+00:00"
+            "time": "2019-07-02T14:42:57+00:00"
         },
         {
             "name": "webino/each-file-class-implements",
@@ -1022,17 +1023,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/event-emitter.git",
-                "reference": "ebdd875bbdd9270354202492f2f4c8dddd4616d7"
+                "reference": "021f860b113da1c08447ab16f4f6c6154d56d76e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/event-emitter/zipball/ebdd875bbdd9270354202492f2f4c8dddd4616d7",
-                "reference": "ebdd875bbdd9270354202492f2f4c8dddd4616d7",
+                "url": "https://api.github.com/repos/webino/event-emitter/zipball/021f860b113da1c08447ab16f4f6c6154d56d76e",
+                "reference": "021f860b113da1c08447ab16f4f6c6154d56d76e",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1",
-                "webino/exceptions": "1.*"
+                "webino/exceptions": "dev-develop"
             },
             "require-dev": {
                 "nette/tester": "1.*",
@@ -1059,11 +1060,11 @@
                 }
             ],
             "description": "Event Emitter implementation.",
-            "time": "2019-06-26T15:39:45+00:00"
+            "time": "2019-07-02T14:26:49+00:00"
         },
         {
             "name": "webino/exceptions",
-            "version": "1.0.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/exceptions.git",
@@ -1157,19 +1158,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/instance-container.git",
-                "reference": "245946d5bc9b16b7d943f87a77b5fd2869bd598f"
+                "reference": "8261ad0503d8bd0c7b6b61821499b0611bac931c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/instance-container/zipball/245946d5bc9b16b7d943f87a77b5fd2869bd598f",
-                "reference": "245946d5bc9b16b7d943f87a77b5fd2869bd598f",
+                "url": "https://api.github.com/repos/webino/instance-container/zipball/8261ad0503d8bd0c7b6b61821499b0611bac931c",
+                "reference": "8261ad0503d8bd0c7b6b61821499b0611bac931c",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1",
                 "psr/container": "1.*",
                 "webino/event-emitter": "dev-develop",
-                "webino/exceptions": "1.*"
+                "webino/exceptions": "dev-develop"
             },
             "require-dev": {
                 "nette/tester": "1.*",
@@ -1196,7 +1197,7 @@
                 }
             ],
             "description": "Class Instance Container implementation.",
-            "time": "2019-06-26T15:43:22+00:00"
+            "time": "2019-07-02T14:28:50+00:00"
         },
         {
             "name": "webino/recursive-directory-regex-iterator",
@@ -2341,16 +2342,16 @@
         },
         {
             "name": "webino/develop",
-            "version": "1.0.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/develop.git",
-                "reference": "fa8d03dbbc8391c600dd0680f6c889a270ea28f0"
+                "reference": "ed6bd507266b03e50b887ae35add700354e14551"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/develop/zipball/fa8d03dbbc8391c600dd0680f6c889a270ea28f0",
-                "reference": "fa8d03dbbc8391c600dd0680f6c889a270ea28f0",
+                "url": "https://api.github.com/repos/webino/develop/zipball/ed6bd507266b03e50b887ae35add700354e14551",
+                "reference": "ed6bd507266b03e50b887ae35add700354e14551",
                 "shasum": ""
             },
             "require": {
@@ -2386,8 +2387,8 @@
                     "email": "peter@bacinsky.sk"
                 }
             ],
-            "description": "PHP applications development support.",
-            "time": "2019-06-22T07:12:00+00:00"
+            "description": "PHP projects development support.",
+            "time": "2019-07-02T08:10:19+00:00"
         },
         {
             "name": "webino/nette-tester",
@@ -2454,7 +2455,7 @@
         },
         {
             "name": "webino/testing",
-            "version": "1.0.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/testing.git",
@@ -2496,6 +2497,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "webino/exceptions": 20,
         "webino/var-export-php": 20,
         "webino/recursive-directory-regex-iterator": 20,
         "webino/each-file-class-implements": 20,
@@ -2504,7 +2506,9 @@
         "webino/filesystem": 20,
         "webino/request": 20,
         "webino/response": 20,
-        "webino/console": 20
+        "webino/console": 20,
+        "webino/testing": 20,
+        "webino/develop": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -41,8 +41,13 @@ class ConsoleEvent extends DispatchEvent implements ConsoleEventInterface
         throw new NotConsoleRequestException;
     }
 
+    /**
+     * @return ConsoleInterface
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function getConsole(): ConsoleInterface
     {
-        // TODO: Implement getConsole() method.
+        return $this->getApp()->get(Console::class);
     }
 }

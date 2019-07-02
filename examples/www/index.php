@@ -122,9 +122,7 @@ $app->onConsole(function (ConsoleEvent $event) {
 
 
 
-    //$cli = $event->getConsole();
-
-    $cli = new \League\CLImate\CLImate;
+    $cli = $event->getConsole();
 
     // TODO
     $argv = [];
@@ -173,22 +171,22 @@ $app->onConsole(function (ConsoleEvent $event) {
 
     $cli->br()->boldUnderline('<yellow>Webino Console</yellow>')->br();
 
-    $arg = new Argument('version');
+    $arg = new ConsoleOption('version');
     $arg->setPrefix('v');
     $arg->setLongPrefix('version');
     $arg->setDescription('Display version info.');
     $arg->setNoValue();
 
-    $cli->arguments->add($arg);
+    $cli->arguments->add($arg->toArray());
 
 
-    $arg = new Argument('help');
+    $arg = new ConsoleOption('help');
     $arg->setPrefix('h');
     $arg->setLongPrefix('help');
     $arg->setDescription('Display help.');
     $arg->setNoValue();
 
-    $cli->arguments->add($arg);
+    $cli->arguments->add($arg->toArray());
 
     $usageArgs = [];
     /** @var \League\CLImate\Argument\Argument $arg */
@@ -214,6 +212,7 @@ $app->onConsole(function (ConsoleEvent $event) {
     }
 
     $cli->br();
+
 
 
     // TODO invalid command error

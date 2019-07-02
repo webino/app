@@ -21,7 +21,27 @@ chdir(__DIR__ . '/..');
 
 abstract class AbstractConsoleCommand
 {
+    public const NAME = '';
+
+    public const DESCRIPTION = '';
+
+    public const CATEGORY = '';
+
     abstract public function onCommand(ConsoleEvent $event);
+}
+
+class HelpCommand extends AbstractConsoleCommand
+{
+    public const NAME = ['-h', '--help'];
+
+    public const DESCRIPTION = 'Display help.';
+
+    public const CATEGORY = 'utilities';
+
+    public function onCommand(ConsoleEvent $event)
+    {
+        return 'Help command';
+    }
 }
 
 class GenerateCommand extends AbstractConsoleCommand
@@ -30,6 +50,12 @@ class GenerateCommand extends AbstractConsoleCommand
         'generate',
         '[type = all : Generator type]',
     ];
+
+    public const NAME = 'generate';
+
+    public const DESCRIPTION = 'Generate system files.';
+
+    public const CATEGORY = 'utilities';
 
     public function onCommand(ConsoleEvent $event)
     {
@@ -43,6 +69,12 @@ class ExampleCommand extends AbstractConsoleCommand
 {
     const COMMAND = 'example:command -v|--verbose';
 
+    public const NAME = 'example';
+
+    public const DESCRIPTION = 'Example console command.';
+
+    public const CATEGORY = 'examples';
+
     public function onCommand(ConsoleEvent $event)
     {
 //        if ($command['v']) {
@@ -51,6 +83,31 @@ class ExampleCommand extends AbstractConsoleCommand
 //        }
 
         return 'Console example';
+    }
+}
+
+class ConsoleCommand extends AbstractConsoleCommand
+{
+    public const NAME = 'console';
+
+    public const DESCRIPTION = 'Interactive console.';
+
+    public const CATEGORY = 'utilities';
+
+    private function runShell(ConsoleEvent $event): \Psy\Shell
+    {
+        $app = $event->getApp();
+        /** @var \Psy\Shell $shell */
+        $shell = $app->get(\Psy\Shell::class);
+        $shell->setScopeVariables(['app' => $app]);
+        $shell->run();
+        return $shell;
+    }
+
+    public function onCommand(ConsoleEvent $event)
+    {
+        extract($this->runShell($event)->getScopeVariables());
+        return '';
     }
 }
 
@@ -72,77 +129,49 @@ $app->onConsole(function (ConsoleEvent $event) {
     // TODO
     $argv = [];
 
-
-    $commandMap = [
-        'example' => ExampleCommand::class,
-        'generate' => GenerateCommand::class,
+    $commands = [
+        ExampleCommand::class,
+        GenerateCommand::class,
+        ConsoleCommand::class,
+        HelpCommand::class,
+        HelpCommand::class,
     ];
+
+    $commandMap = [];
+    $spec = [];
+    foreach ($commands as $commandClass) {
+        $commandNames = (array)constant("$commandClass::NAME");
+        $commandCategory = constant("$commandClass::CATEGORY") ?? 'default';
+        $commandDescription = constant("$commandClass::DESCRIPTION");
+
+        isset($spec[$commandCategory]) or $spec[$commandCategory] = [];
+
+        foreach ($commandNames as $commandName) {
+            $commandMap[$commandName] = $commandClass;
+
+            '-' == $commandName[0]
+            or $spec[$commandCategory][$commandName] = $commandDescription;
+        }
+    }
 
     $commandName = $_SERVER['argv'][1] ?? null;
-    if (!$commandName) {
-        // TODO display help;
-        return 'Help...';
+    if ($commandName) {
+        $commandClass = $commandMap[$commandName] ?? null;
+        if ($commandClass) {
+
+            /** @var AbstractConsoleCommand $command */
+            $command = $app->make($commandClass);
+
+            return $command->onCommand($event);
+        }
     }
 
-    $commandClass = $commandMap[$commandName];
-    if (!$commandClass) {
-        // TODO invalid command error
-        return 'Invalid command';
-    }
+    // HELP
+    // TODO
+    // TODO display help;
+//    return 'Help...';
 
-
-    /** @var AbstractConsoleCommand $command */
-    $command = $app->make($commandClass);
-
-    /*
-    $cli->description('Bla bla my cli...');
-
-    $arg = new Argument('pokus');
-//    $arg->setPrefix('t');
-//    $arg->setLongPrefix('pokus');
-    $arg->setDescription('Test operand...');
-    $arg->setRequired();
-//    $arg->setNoValue();
-
-    $cli->arguments->add($arg);
-
-    $arg = new Argument('test');
-    $arg->setPrefix('t');
-    $arg->setLongPrefix('test');
-    $arg->setDescription('Test argument...');
-    $arg->setRequired();
-//    $arg->setNoValue();
-
-    $cli->arguments->add($arg);
-
-    $arg = new Argument('test2');
-    $arg->setPrefix('t2');
-    $arg->setLongPrefix('test2');
-    $arg->setDescription('Test argument2...');
-    $arg->setNoValue();
-
-    $cli->arguments->add($arg);
-    */
-
-
-    $cli->br()->bold('Webino Console')->br();
-
-    // commands
-//    $arg = new Argument('generate');
-//    $arg->setDescription('Generate system files.');
-//    $cli->arguments->add($arg);
-
-
-    $spec = [
-        'utilities' => [
-            'generate' => 'Generate system files.',
-            'example' => 'Example console command.',
-        ],
-        'users' => [
-            'user-add' => 'Add new user.',
-            'user-list' => 'List existing users.',
-        ],
-    ];
+    $cli->br()->boldUnderline('<yellow>Webino Console</yellow>')->br();
 
     $arg = new Argument('version');
     $arg->setPrefix('v');
@@ -168,9 +197,9 @@ $app->onConsole(function (ConsoleEvent $event) {
     }
     $usageArgs = join(' ', $usageArgs);
 
-    $cli->out('Usage: ' . $usageArgs . ' <command> [<args>]')->br();
+    $cli->out('<yellow>Usage:</yellow> php index.php ' . $usageArgs . ' <command> [<options>]')->br();
 
-    $cli->out('Commands:');
+    $cli->out('<yellow>Available commands:</yellow>');
 
     $padding = $cli->padding(16)->char(' ');
 
@@ -180,15 +209,15 @@ $app->onConsole(function (ConsoleEvent $event) {
 
         foreach ($subSpec as $label => $description) {
             $cli->inline('   ');
-            $padding->label($label)->result($description);
+            $padding->label('<green>' . $label . '</green>')->result($description);
         }
     }
 
     $cli->br();
 
 
-    return '';
-    //return $command->onCommand($event);
+    // TODO invalid command error
+    return 'Invalid command';
 
 
 

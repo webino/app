@@ -933,12 +933,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/console.git",
-                "reference": "5a85bf0999843895dcccebcec128de92c88392e1"
+                "reference": "0ab6bba9dcb1ff0292d6b5a95abaa31a1a800ab2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/console/zipball/5a85bf0999843895dcccebcec128de92c88392e1",
-                "reference": "5a85bf0999843895dcccebcec128de92c88392e1",
+                "url": "https://api.github.com/repos/webino/console/zipball/0ab6bba9dcb1ff0292d6b5a95abaa31a1a800ab2",
+                "reference": "0ab6bba9dcb1ff0292d6b5a95abaa31a1a800ab2",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +971,7 @@
                 }
             ],
             "description": "Command line implementation library.",
-            "time": "2019-07-02T14:42:57+00:00"
+            "time": "2019-07-02T14:55:13+00:00"
         },
         {
             "name": "webino/each-file-class-implements",
@@ -2101,16 +2101,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.11.8",
+            "version": "0.11.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "fcf0081bf3a254ddacffa03e78be87842d0c09c9"
+                "reference": "6771e622ad93f0aff16a100547811e1e50781acb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fcf0081bf3a254ddacffa03e78be87842d0c09c9",
-                "reference": "fcf0081bf3a254ddacffa03e78be87842d0c09c9",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6771e622ad93f0aff16a100547811e1e50781acb",
+                "reference": "6771e622ad93f0aff16a100547811e1e50781acb",
                 "shasum": ""
             },
             "require": {
@@ -2123,7 +2123,7 @@
                 "nette/utils": "^2.4.5 || ^3.0",
                 "nikic/php-parser": "^4.0.2",
                 "php": "~7.1",
-                "phpstan/phpdoc-parser": "^0.3.4",
+                "phpstan/phpdoc-parser": "^0.3.5",
                 "symfony/console": "~3.2 || ~4.0",
                 "symfony/finder": "~3.2 || ~4.0"
             },
@@ -2136,6 +2136,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
                 "ext-intl": "*",
                 "ext-mysqli": "*",
+                "ext-simplexml": "*",
                 "ext-soap": "*",
                 "ext-zip": "*",
                 "jakub-onderka/php-parallel-lint": "^1.0",
@@ -2171,7 +2172,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2019-05-28T19:58:33+00:00"
+            "time": "2019-07-03T21:25:16+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

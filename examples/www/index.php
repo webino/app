@@ -19,11 +19,54 @@ require __DIR__ . '/../../vendor/autoload.php';
 chdir(__DIR__ . '/..');
 
 
-class ConsoleSpec implements InstanceFactoryMethodInterface
+class ConsoleSpec implements \IteratorAggregate, InstanceFactoryMethodInterface
 {
     public static function create(CreateInstanceEventInterface $event)
     {
         // TODO: Implement create() method.
+        return new static;
+    }
+
+    public function getIterator(): iterable
+    {
+        $commands = [
+            ExampleCommand::class,
+            GenerateCommand::class,
+            ConsoleCommand::class,
+            HelpCommand::class,
+            HelpCommand::class,
+        ];
+
+        $commandMap = [];
+        $spec = new \ArrayObject;
+        foreach ($commands as $commandClass) {
+            $commandNames = (array)constant("$commandClass::NAME");
+            $commandCategory = constant("$commandClass::CATEGORY") ?? 'default';
+            $commandDescription = constant("$commandClass::DESCRIPTION");
+
+            isset($spec[$commandCategory]) or $spec[$commandCategory] = [];
+
+            foreach ($commandNames as $commandName) {
+                $commandMap[$commandName] = $commandClass;
+
+                '-' == $commandName[0]
+                or $spec[$commandCategory][$commandName] = $commandDescription;
+            }
+        }
+
+        $commandName = $_SERVER['argv'][1] ?? null;
+        if ($commandName) {
+            $commandClass = $commandMap[$commandName] ?? null;
+            if ($commandClass) {
+
+                /** @var AbstractConsoleCommand $command */
+                $command = $app->make($commandClass);
+
+                return $command->onCommand($event);
+            }
+        }
+
+        return new $spec;
     }
 }
 
@@ -47,6 +90,7 @@ class DefaultCommand extends AbstractConsoleCommand
      */
     public function onCommand(ConsoleEvent $event)
     {
+        $app = $event->getApp();
         $cli = $event->getConsole();
         $cli->br()->boldUnderline('<yellow>Webino Console</yellow>')->br();
 
@@ -192,46 +236,6 @@ $app->onConsole(function (ConsoleEvent $event) {
 
 
     $cli = $event->getConsole();
-
-    // TODO
-    $argv = [];
-
-    $commands = [
-        ExampleCommand::class,
-        GenerateCommand::class,
-        ConsoleCommand::class,
-        HelpCommand::class,
-        HelpCommand::class,
-    ];
-
-    $commandMap = [];
-    $spec = [];
-    foreach ($commands as $commandClass) {
-        $commandNames = (array)constant("$commandClass::NAME");
-        $commandCategory = constant("$commandClass::CATEGORY") ?? 'default';
-        $commandDescription = constant("$commandClass::DESCRIPTION");
-
-        isset($spec[$commandCategory]) or $spec[$commandCategory] = [];
-
-        foreach ($commandNames as $commandName) {
-            $commandMap[$commandName] = $commandClass;
-
-            '-' == $commandName[0]
-            or $spec[$commandCategory][$commandName] = $commandDescription;
-        }
-    }
-
-    $commandName = $_SERVER['argv'][1] ?? null;
-    if ($commandName) {
-        $commandClass = $commandMap[$commandName] ?? null;
-        if ($commandClass) {
-
-            /** @var AbstractConsoleCommand $command */
-            $command = $app->make($commandClass);
-
-            return $command->onCommand($event);
-        }
-    }
 
     // HELP
     // TODO

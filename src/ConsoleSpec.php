@@ -21,7 +21,7 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
     /**
      * @var array
      */
-    private $arguments = [];
+    private $options = [];
 
     /**
      * @var array
@@ -74,24 +74,24 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
 
     /**
      * @param array $data
-     * @param array $arguments
+     * @param array $options
      * @param array $commandMap
      */
-    public function __construct(array $data, array $arguments, array $commandMap)
+    public function __construct(array $data, array $options, array $commandMap)
     {
         parent::__construct($data);
-        $this->arguments = $arguments;
+        $this->options = $options;
         $this->commandMap = $commandMap;
     }
 
     /**
-     * Returns console arguments.
+     * Returns console options.
      *
      * @return array
      */
-    public function getArguments(): array
+    public function getOptions(): array
     {
-        return $this->arguments;
+        return $this->options;
     }
 
     /**

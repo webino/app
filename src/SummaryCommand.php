@@ -33,13 +33,13 @@ class SummaryCommand extends AbstractConsoleCommand
 
         $cli->br()->boldUnderline('<yellow>Webino Console</yellow>')->br();
 
-        foreach ($spec->getArguments() as $arg) {
+        foreach ($spec->getOptions() as $arg) {
             $cli->addOption($arg);
         }
 
         $usageArgs = [];
         /** @var Argument $arg */
-        foreach ($cli->getArguments() as $arg) {
+        foreach ($cli->getOptions() as $arg) {
             $usageArgs[] = '[-' . $arg->prefix() . '|--' . $arg->longPrefix() . ']';
         }
         $usageArgs = join(' ', $usageArgs);

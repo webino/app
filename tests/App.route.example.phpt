@@ -28,7 +28,7 @@ $request = $container->make(HttpRequest::class, HttpRequest::defaults([
 ]));
 
 
-$core = new Core;
+$core = new AbstractCore;
 $app = $core->bootstrap();
 
 $app->on(ExampleRoute::class, function (ExampleRoute $route) {

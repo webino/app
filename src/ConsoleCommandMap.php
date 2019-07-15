@@ -39,21 +39,21 @@ class ConsoleCommandMap extends AbstractGeneratedMap
         }
 
         $map = [];
-        $this->eachFileClassImplements(
-            $this::CLASS_DIR_PATH,
-            '~Command.php$~',
-            __NAMESPACE__,
-            ConsoleCommandInterface::class,
-            function (string $class) use (&$map) {
-                $map[] = $class;
-            }
-        );
+        foreach ($this->getDirs() as $dir) {
+            $this->eachFileClassImplements(
+                $dir,
+                '~/(?!Abstract)[^/]+Command.php$~',
+                __NAMESPACE__,
+                ConsoleCommandInterface::class,
+                function (string $class) use (&$map) {
+                    $names = (array)constant("$class::NAME");
+                    $category = constant("$class::CATEGORY") ?: 'default';
+                    $description = constant("$class::DESCRIPTION");
 
-        // TODO
-        $map[] = VersionCommand::class;
-        $map[] = HelpCommand::class;
-        $map[] = ShellCommand::class;
-        $map[] = GenerateCommand::class;
+                    $map[$class] = [$names, $category, $description];
+                }
+            );
+        }
 
         $export = $this->varExportPhp($map);
         $filesystem->write($this::FILE_PATH, $export, true);

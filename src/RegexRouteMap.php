@@ -38,19 +38,21 @@ class RegexRouteMap extends AbstractGeneratedMap
             return;
         }
 
-        $regexRouteMap = [];
-        $this->eachFileClassImplements(
-            $this::CLASS_DIR_PATH,
-            '~Route.php$~',
-            __NAMESPACE__,
-            RegexRouteInterface::class,
-            function (string $class) use (&$regexRouteMap) {
-                $match = constant($class . '::MATCH');
-                $regexRouteMap[$match] = $class;
-            }
-        );
+        $map = [];
+        foreach ($this->getDirs() as $dir) {
+            $this->eachFileClassImplements(
+                $dir,
+                '~/(?!Abstract)[^/]+Route.php$~',
+                __NAMESPACE__,
+                RegexRouteInterface::class,
+                function (string $class) use (&$map) {
+                    $match = constant($class . '::MATCH');
+                    $map[$match] = $class;
+                }
+            );
+        }
 
-        $export = $this->varExportPhp($regexRouteMap);
+        $export = $this->varExportPhp($map);
         $filesystem->write($this::FILE_PATH, $export, true);
     }
 }

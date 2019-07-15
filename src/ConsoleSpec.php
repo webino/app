@@ -21,6 +21,11 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
     /**
      * @var array
      */
+    private $arguments = [];
+
+    /**
+     * @var array
+     */
     private $commandMap = [];
 
     /**
@@ -35,35 +40,63 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
 
         $commandMap = [];
         $spec = [];
-        foreach ($commands as $commandClass) {
-            $commandNames = (array)constant("$commandClass::NAME");
-            $commandCategory = constant("$commandClass::CATEGORY") ?: 'default';
-            $commandDescription = constant("$commandClass::DESCRIPTION");
+        $opts = [];
 
+        foreach ($commands as $commandClass => $command) {
+            list($commandNames, $commandCategory, $commandDescription) = $command;
             isset($spec[$commandCategory]) or $spec[$commandCategory] = [];
 
             foreach ($commandNames as $commandName) {
-                $commandMap[$commandName] = $commandClass;
+                if ($commandName) {
+                    $commandMap[$commandName] = $commandClass;
 
-                '-' == $commandName[0]
-                or $spec[$commandCategory][$commandName] = $commandDescription;
+                    if (isset($commandName[1]) && '-' == $commandName[1]) {
+                        $opt = $opts[$commandClass] ?? new ConsoleOption($commandClass);
+                        $opt->setLongPrefix(substr($commandName, 2));
+                        $opt->setNoValue();
+                        $opts[$commandClass] = $opt;
+
+                    } elseif ('-' == $commandName[0]) {
+                        $opt = $opts[$commandClass] ?? new ConsoleOption($commandClass);
+                        $opt->setPrefix(substr($commandName, 1));
+                        $opt->setNoValue();
+                        $opts[$commandClass] = $opt;
+
+                    } else {
+                        $spec[$commandCategory][$commandName] = $commandDescription;
+                    }
+                }
             }
         }
 
-        return new static($spec, $commandMap);
+        return new static($spec, $opts, $commandMap);
     }
 
     /**
      * @param array $data
+     * @param array $arguments
      * @param array $commandMap
      */
-    public function __construct(array $data, array $commandMap)
+    public function __construct(array $data, array $arguments, array $commandMap)
     {
         parent::__construct($data);
+        $this->arguments = $arguments;
         $this->commandMap = $commandMap;
     }
 
     /**
+     * Returns console arguments.
+     *
+     * @return array
+     */
+    public function getArguments(): array
+    {
+        return $this->arguments;
+    }
+
+    /**
+     * Returns console command class.
+     *
      * @param string $commandName
      * @return string
      */

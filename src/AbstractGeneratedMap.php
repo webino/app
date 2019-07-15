@@ -19,6 +19,7 @@ use ArrayIterator;
  * @package app
  */
 abstract class AbstractGeneratedMap implements
+    GeneratedMapInterface,
     RegexRouteMapInterface,
     InstanceFactoryMethodInterface
 {
@@ -29,7 +30,7 @@ abstract class AbstractGeneratedMap implements
     /**
      * Directory path to application class files.
      */
-    const ROUTES_DIR_PATH = '';
+    const CLASS_DIR_PATH = '';
 
     /**
      * File path to generated map data.
@@ -53,6 +54,21 @@ abstract class AbstractGeneratedMap implements
     public function __construct(FilesystemInterface $filesystem)
     {
         $this->setFilesystem($filesystem);
+    }
+
+    /**
+     * Returns directories path to scan.
+     *
+     * @return array
+     */
+    public function getDirs(): array
+    {
+        return [
+            $this::CLASS_DIR_PATH,
+            __DIR__ . '/../src',
+            __DIR__ . '/../vendor',
+            __DIR__ . '/../../../../../vendor',
+        ];
     }
 
     /**

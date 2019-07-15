@@ -1,4 +1,12 @@
 <?php
+/**
+ * Webino™ (http://webino.sk)
+ *
+ * @link        https://github.com/webino/app
+ * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
+ * @author      Peter Bačinský <peter@bacinsky.sk>
+ * @license     BSD-3-Clause
+ */
 
 namespace Webino;
 
@@ -18,24 +26,16 @@ class SummaryCommand extends AbstractConsoleCommand
     public function onCommand(ConsoleEventInterface $event)
     {
         $cli = $event->getConsole();
+        $app = $event->getApp();
+
+        /** @var ConsoleSpec $spec */
+        $spec = $app->get(ConsoleSpec::class);
 
         $cli->br()->boldUnderline('<yellow>Webino Console</yellow>')->br();
 
-        // TODO decouple
-        $arg = new ConsoleOption('version');
-        $arg->setPrefix('v');
-        $arg->setLongPrefix('version');
-        $arg->setDescription('Display version info.');
-        $arg->setNoValue();
-        $cli->addOption($arg);
-
-        // TODO decouple
-        $arg = new ConsoleOption('help');
-        $arg->setPrefix('h');
-        $arg->setLongPrefix('help');
-        $arg->setDescription('Display help.');
-        $arg->setNoValue();
-        $cli->addOption($arg);
+        foreach ($spec->getArguments() as $arg) {
+            $cli->addOption($arg);
+        }
 
         $usageArgs = [];
         /** @var Argument $arg */
@@ -47,11 +47,6 @@ class SummaryCommand extends AbstractConsoleCommand
         $cli->out('<yellow>Usage:</yellow> php index.php ' . $usageArgs . ' <command> [<options>]')->br();
         $cli->out('<yellow>Available commands:</yellow>');
         $padding = $cli->padding(16)->char(' ');
-
-        // summary
-        $app = $event->getApp();
-        /** @var ConsoleSpec $spec */
-        $spec = $app->get(ConsoleSpec::class);
 
         foreach ($spec as $group => $subSpec) {
             $groupAdded = false;

@@ -30,7 +30,7 @@ class DispatchEvent extends Event implements
      * @return DispatchEvent
      * @throws NotAppException
      */
-    public static function create(CreateInstanceEventInterface $event): DispatchEvent
+    public static function create(CreateInstanceEventInterface $event)
     {
         $container = $event->getContainer();
         $params = $event->getParameters();

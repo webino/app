@@ -933,12 +933,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/console.git",
-                "reference": "871631ea8c508e5f1f9ebb52333cb5b1844fbe98"
+                "reference": "2b1f7c6e0ba85465ecedb48552d67667ac66c115"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/console/zipball/871631ea8c508e5f1f9ebb52333cb5b1844fbe98",
-                "reference": "871631ea8c508e5f1f9ebb52333cb5b1844fbe98",
+                "url": "https://api.github.com/repos/webino/console/zipball/2b1f7c6e0ba85465ecedb48552d67667ac66c115",
+                "reference": "2b1f7c6e0ba85465ecedb48552d67667ac66c115",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +971,7 @@
                 }
             ],
             "description": "Command line implementation library.",
-            "time": "2019-07-15T10:21:29+00:00"
+            "time": "2019-07-15T10:37:02+00:00"
         },
         {
             "name": "webino/each-file-class-implements",

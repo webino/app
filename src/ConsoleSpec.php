@@ -1,12 +1,22 @@
 <?php
+/**
+ * Webino™ (http://webino.sk)
+ *
+ * @link        https://github.com/webino/app
+ * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
+ * @author      Peter Bačinský <peter@bacinsky.sk>
+ * @license     BSD-3-Clause
+ */
 
 namespace Webino;
+
+use ArrayObject;
 
 /**
  * Class ConsoleSpec
  * @package app
  */
-class ConsoleSpec extends \ArrayObject implements InstanceFactoryMethodInterface
+class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
 {
     /**
      * @var array
@@ -22,11 +32,6 @@ class ConsoleSpec extends \ArrayObject implements InstanceFactoryMethodInterface
         $container = $event->getContainer();
         /** @var ConsoleCommandMap $commandMap */
         $commands = iterator_to_array($container->get(ConsoleCommandMap::class));
-
-        // TODO
-        $commands[] = GenerateCommand::class;
-        $commands[] = ShellCommand::class;
-        $commands[] = HelpCommand::class;
 
         $commandMap = [];
         $spec = [];

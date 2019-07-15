@@ -20,7 +20,7 @@ class HttpEvent extends DispatchEvent implements HttpEventInterface
      * @param CreateInstanceEventInterface $event
      * @return HttpEvent
      */
-    public static function create(CreateInstanceEventInterface $event): HttpEvent
+    public static function create(CreateInstanceEventInterface $event)
     {
         return new self(...$event->getParameters());
     }

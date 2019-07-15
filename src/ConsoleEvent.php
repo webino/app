@@ -21,7 +21,7 @@ class ConsoleEvent extends DispatchEvent implements ConsoleEventInterface
      * @param array $arguments
      * @return ConsoleEvent
      */
-    public static function create(CreateInstanceEventInterface $event, array $arguments = []): ConsoleEvent
+    public static function create(CreateInstanceEventInterface $event, array $arguments = [])
     {
         return new self(...$event->getParameters());
     }

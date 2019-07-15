@@ -14,5 +14,9 @@ interface ConsoleCommandInterface
 
     public const CATEGORY = '';
 
+    /**
+     * @param ConsoleEventInterface $event
+     * @return mixed
+     */
     public function onCommand(ConsoleEventInterface $event);
 }

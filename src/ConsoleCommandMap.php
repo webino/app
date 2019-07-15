@@ -45,10 +45,15 @@ class ConsoleCommandMap extends AbstractGeneratedMap
             __NAMESPACE__,
             ConsoleCommandInterface::class,
             function (string $class) use (&$map) {
-                $name = constant($class . '::NAME');
-                $map[$name] = $class;
+                $map[] = $class;
             }
         );
+
+        // TODO
+        $map[] = VersionCommand::class;
+        $map[] = HelpCommand::class;
+        $map[] = ShellCommand::class;
+        $map[] = GenerateCommand::class;
 
         $export = $this->varExportPhp($map);
         $filesystem->write($this::FILE_PATH, $export, true);

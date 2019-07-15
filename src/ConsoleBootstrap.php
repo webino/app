@@ -1,4 +1,12 @@
 <?php
+/**
+ * Webino™ (http://webino.sk)
+ *
+ * @link        https://github.com/webino/app
+ * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
+ * @author      Peter Bačinský <peter@bacinsky.sk>
+ * @license     BSD-3-Clause
+ */
 
 namespace Webino;
 
@@ -19,6 +27,6 @@ class ConsoleBootstrap implements ConsoleBootstrapInterface
         // default command
         /** @var AbstractConsoleCommand $command */
         $command = $app->make(DefaultCommand::class);
-        return $command->onCommand($event);
+        return (string)$command->onCommand($event);
     }
 }

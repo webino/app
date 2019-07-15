@@ -1,4 +1,12 @@
 <?php
+/**
+ * Webino™ (http://webino.sk)
+ *
+ * @link        https://github.com/webino/app
+ * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
+ * @author      Peter Bačinský <peter@bacinsky.sk>
+ * @license     BSD-3-Clause
+ */
 
 namespace Webino;
 
@@ -8,16 +16,20 @@ namespace Webino;
  */
 class HelpCommand extends AbstractConsoleCommand
 {
-    // TODO
-
     public const NAME = ['-h', '--help'];
 
-    public const DESCRIPTION = 'Display help.';
-
-    public const CATEGORY = 'utilities';
-
+    /**
+     * @param ConsoleEventInterface $event
+     * @return string|void
+     * @throws \Exception
+     */
     public function onCommand(ConsoleEventInterface $event)
     {
-        return 'Help command';
+        // TODO
+
+        $app = $event->getApp();
+        /** @var SummaryCommand $defaultCommand */
+        $summary = $app->make(SummaryCommand::class);
+        return $summary->onCommand($event);
     }
 }

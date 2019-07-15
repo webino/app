@@ -1,4 +1,12 @@
 <?php
+/**
+ * Webino™ (http://webino.sk)
+ *
+ * @link        https://github.com/webino/app
+ * @copyright   Copyright (c) 2019 Webino, s.r.o. (http://webino.sk)
+ * @author      Peter Bačinský <peter@bacinsky.sk>
+ * @license     BSD-3-Clause
+ */
 
 namespace Webino;
 
@@ -11,21 +19,21 @@ class ExampleCommand extends AbstractConsoleCommand
 {
     // TODO
 
-    const COMMAND = 'example:command -v|--verbose';
-
     public const NAME = 'example';
-
-    public const DESCRIPTION = 'Example console command.';
 
     public const CATEGORY = 'examples';
 
+    public const DESCRIPTION = 'Example console command.';
+
     public function onCommand(ConsoleEventInterface $event)
     {
+        $cli = $event->getConsole();
+
 //        if ($command['v']) {
 //            // TODO
 //            echo 'Verbose output...';
 //        }
 
-        return 'Console example';
+        $cli->out('Console example');
     }
 }

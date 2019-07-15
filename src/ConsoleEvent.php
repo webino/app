@@ -43,8 +43,6 @@ class ConsoleEvent extends DispatchEvent implements ConsoleEventInterface
 
     /**
      * @return ConsoleInterface
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function getConsole(): ConsoleInterface
     {

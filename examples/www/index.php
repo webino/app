@@ -13,21 +13,22 @@
 
 namespace Webino;
 
-use League\CLImate\Argument\Argument;
-
 require __DIR__ . '/../../vendor/autoload.php';
 chdir(__DIR__ . '/..');
 
 
-class ConsoleSpec implements \IteratorAggregate, InstanceFactoryMethodInterface
+class ConsoleSpec extends \ArrayObject implements InstanceFactoryMethodInterface
 {
-    public static function create(CreateInstanceEventInterface $event)
-    {
-        // TODO: Implement create() method.
-        return new static;
-    }
+    /**
+     * @var aray
+     */
+    private $commandMap = [];
 
-    public function getIterator(): iterable
+    /**
+     * @param CreateInstanceEventInterface $event
+     * @return ConsoleSpec
+     */
+    public static function create(CreateInstanceEventInterface $event): ConsoleSpec
     {
         $commands = [
             ExampleCommand::class,
@@ -38,10 +39,10 @@ class ConsoleSpec implements \IteratorAggregate, InstanceFactoryMethodInterface
         ];
 
         $commandMap = [];
-        $spec = new \ArrayObject;
+        $spec = [];
         foreach ($commands as $commandClass) {
             $commandNames = (array)constant("$commandClass::NAME");
-            $commandCategory = constant("$commandClass::CATEGORY") ?? 'default';
+            $commandCategory = constant("$commandClass::CATEGORY") ?: 'default';
             $commandDescription = constant("$commandClass::DESCRIPTION");
 
             isset($spec[$commandCategory]) or $spec[$commandCategory] = [];
@@ -54,19 +55,27 @@ class ConsoleSpec implements \IteratorAggregate, InstanceFactoryMethodInterface
             }
         }
 
-        $commandName = $_SERVER['argv'][1] ?? null;
+        return new static($spec, $commandMap);
+    }
+
+    /**
+     * @param array $data
+     * @param array $commandMap
+     */
+    public function __construct(array $data, array $commandMap)
+    {
+        parent::__construct($data);
+        $this->commandMap = $commandMap;
+    }
+
+    public function getCommandClass(): string
+    {
+        $commandName = $_SERVER['argv'][1] ?? 'default';
         if ($commandName) {
-            $commandClass = $commandMap[$commandName] ?? null;
-            if ($commandClass) {
-
-                /** @var AbstractConsoleCommand $command */
-                $command = $app->make($commandClass);
-
-                return $command->onCommand($event);
-            }
+            $commandClass = $this->commandMap[$commandName] ?? '';
+            return $commandClass;
         }
-
-        return new $spec;
+        return '';
     }
 }
 
@@ -78,17 +87,17 @@ abstract class AbstractConsoleCommand
 
     public const CATEGORY = '';
 
-    abstract public function onCommand(ConsoleEvent $event);
+    abstract public function onCommand(ConsoleEventInterface $event);
 }
 
 class DefaultCommand extends AbstractConsoleCommand
 {
     /**
-     * @param ConsoleEvent $event
+     * @param ConsoleEventInterface $event
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function onCommand(ConsoleEvent $event)
+    public function onCommand(ConsoleEventInterface $event)
     {
         $app = $event->getApp();
         $cli = $event->getConsole();
@@ -127,6 +136,15 @@ class DefaultCommand extends AbstractConsoleCommand
         /** @var ConsoleSpec $spec */
         $spec = $app->get(ConsoleSpec::class);
 
+        // command dispatch
+        if ($commandClass = $spec->getCommandClass()) {
+            $app = $event->getApp();
+            /** @var AbstractConsoleCommand $command */
+            $command = $app->make($commandClass);
+            return $command->onCommand($event);
+        }
+
+        // summary
         foreach ($spec as $group => $subSpec) {
 
             $cli->underline($group);
@@ -151,7 +169,7 @@ class HelpCommand extends AbstractConsoleCommand
 
     public const CATEGORY = 'utilities';
 
-    public function onCommand(ConsoleEvent $event)
+    public function onCommand(ConsoleEventInterface $event)
     {
         return 'Help command';
     }
@@ -170,7 +188,7 @@ class GenerateCommand extends AbstractConsoleCommand
 
     public const CATEGORY = 'utilities';
 
-    public function onCommand(ConsoleEvent $event)
+    public function onCommand(ConsoleEventInterface $event)
     {
         //pd($command['type']);
 
@@ -188,7 +206,7 @@ class ExampleCommand extends AbstractConsoleCommand
 
     public const CATEGORY = 'examples';
 
-    public function onCommand(ConsoleEvent $event)
+    public function onCommand(ConsoleEventInterface $event)
     {
 //        if ($command['v']) {
 //            // TODO
@@ -207,7 +225,7 @@ class ConsoleCommand extends AbstractConsoleCommand
 
     public const CATEGORY = 'utilities';
 
-    private function runShell(ConsoleEvent $event): \Psy\Shell
+    private function runShell(ConsoleEventInterface $event): \Psy\Shell
     {
         $app = $event->getApp();
         /** @var \Psy\Shell $shell */
@@ -217,7 +235,7 @@ class ConsoleCommand extends AbstractConsoleCommand
         return $shell;
     }
 
-    public function onCommand(ConsoleEvent $event)
+    public function onCommand(ConsoleEventInterface $event)
     {
         extract($this->runShell($event)->getScopeVariables());
         return '';
@@ -229,10 +247,9 @@ $core = new Core;
 
 $app = $core->bootstrap();
 
-$app->onConsole(function (ConsoleEvent $event) {
+$app->onConsole(function (ConsoleEventInterface $event) {
 
     $app = $event->getApp();
-
 
 
     $cli = $event->getConsole();
@@ -249,10 +266,6 @@ $app->onConsole(function (ConsoleEvent $event) {
     /** @var AbstractConsoleCommand $command */
     $command = $app->make(DefaultCommand::class);
     return $command->onCommand($event);
-
-
-
-
 
 
     // TODO

@@ -25,15 +25,15 @@ class ExampleCommand extends AbstractConsoleCommand
 
     public const DESCRIPTION = 'Example console command.';
 
+    /**
+     * @param ConsoleEventInterface $event
+     * @return void
+     */
     public function onCommand(ConsoleEventInterface $event)
     {
         $cli = $event->getConsole();
+        $args = $event->getArguments();
 
-//        if ($command['v']) {
-//            // TODO
-//            echo 'Verbose output...';
-//        }
-
-        $cli->out('Console example');
+        $cli->out('Console example ' . ($args[0] ?? ''));
     }
 }

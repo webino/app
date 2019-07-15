@@ -19,6 +19,10 @@ class ExampleRoute extends AbstractRoute
 {
     const ROUTE = 'example';
 
+    /**
+     * @param AbstractRoute $route
+     * @return string|void
+     */
     public function onRoute(AbstractRoute $route)
     {
         return 'Example';

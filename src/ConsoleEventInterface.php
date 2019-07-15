@@ -25,7 +25,16 @@ interface ConsoleEventInterface extends DispatchEventInterface
     public function getConsoleRequest(): ConsoleRequestInterface;
 
     /**
+     * Returns console.
+     *
      * @return ConsoleInterface
      */
     public function getConsole(): ConsoleInterface;
+
+    /**
+     * Returns command arguments.
+     *
+     * @return array
+     */
+    public function getArguments(): array;
 }

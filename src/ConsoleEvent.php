@@ -43,10 +43,20 @@ class ConsoleEvent extends DispatchEvent implements ConsoleEventInterface
     }
 
     /**
+     * Returns console.
+     *
      * @return ConsoleInterface
      */
     public function getConsole(): ConsoleInterface
     {
         return $this->getApp()->get(Console::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getArguments(): array
+    {
+        return $this->getConsoleRequest()->getArguments();
     }
 }

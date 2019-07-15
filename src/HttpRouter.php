@@ -11,21 +11,23 @@
 namespace Webino;
 
 /**
- * Class HttpRegexRouter
+ * Class HttpRouter
  * @package app
  */
-class HttpRegexRouter
+class HttpRouter
 {
+    /**
+     * @param HttpEvent $event
+     */
     public function __invoke(HttpEvent $event)
     {
-
         $app = $event->getApp();
 
         $request = $event->getHttpRequest();
         $routePath = $request->getRoutePath();
 
         /** @var RouteMapInterface $routeMap */
-        $routeMap = $app->get(RegexRouteMapInterface::class);
+        $routeMap = $app->get(RouteMapInterface::class);
 
         $handler = function ($result, HttpEvent $event, AbstractRoute $route) use ($app) {
             $response = $app->make(ResponseInterface::class, $result) ?? $route->getResponse();

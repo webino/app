@@ -11,10 +11,10 @@
 namespace Webino;
 
 /**
- * Interface RegexRouteMapInterface
+ * Interface RouteInterface
  * @package app
  */
-interface RegexRouteMapInterface extends RouteMapInterface
+interface RouteInterface
 {
-
+    public const ROUTE = '';
 }

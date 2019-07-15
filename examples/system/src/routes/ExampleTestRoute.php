@@ -11,13 +11,13 @@
 namespace Webino;
 
 /**
- * Class HomeRoute
+ * Class ExampleTestRoute
  * @package app
  * @subpackage examples
  */
-class HomeRoute extends AbstractRoute
+class ExampleTestRoute extends ExampleRoute
 {
-    const ROUTE = '/';
+    const ROUTE = parent::ROUTE . '/test';
 
     /**
      * @param AbstractRoute $route
@@ -25,7 +25,6 @@ class HomeRoute extends AbstractRoute
      */
     public function onRoute(AbstractRoute $route)
     {
-        // TODO
-        return 'Home';
+        return 'Example Test';
     }
 }

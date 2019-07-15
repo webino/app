@@ -38,7 +38,7 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
         /** @var ConsoleCommandMap $commandMap */
         $commands = iterator_to_array($container->get(ConsoleCommandMap::class));
 
-        $commandMap = [];
+        $map = [];
         $spec = [];
         $opts = [];
 
@@ -48,7 +48,7 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
 
             foreach ($commandNames as $commandName) {
                 if ($commandName) {
-                    $commandMap[$commandName] = $commandClass;
+                    $map[$commandName] = $commandClass;
 
                     if (isset($commandName[1]) && '-' == $commandName[1]) {
                         $opt = $opts[$commandClass] ?? new ConsoleOption($commandClass);
@@ -69,7 +69,7 @@ class ConsoleSpec extends ArrayObject implements InstanceFactoryMethodInterface
             }
         }
 
-        return new static($spec, $opts, $commandMap);
+        return new static($spec, $opts, $map);
     }
 
     /**

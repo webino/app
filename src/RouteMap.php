@@ -13,20 +13,20 @@
 namespace Webino;
 
 /**
- * Class RegexRouteMap
+ * Class RouteMap
  * @package app
  */
-class RegexRouteMap extends AbstractGeneratedMap
+class RouteMap extends AbstractGeneratedMap
 {
     /**
-     * Directory path to application console commands class files.
+     * Directory path to application route class files.
      */
     const CLASS_DIR_PATH = 'system/src/routes';
 
     /**
-     * File path to generated console command map data.
+     * File path to generated route map data.
      */
-    const FILE_PATH = 'system/data/generated/regex-route-map.php';
+    const FILE_PATH = 'system/data/generated/route-map.php';
 
     /**
      * @return void
@@ -44,10 +44,10 @@ class RegexRouteMap extends AbstractGeneratedMap
                 $dir,
                 '~/(?!Abstract)[^/]+Route.php$~',
                 __NAMESPACE__,
-                RegexRouteInterface::class,
+                RouteInterface::class,
                 function (string $class) use (&$map) {
-                    $match = constant($class . '::MATCH');
-                    $map[$match] = $class;
+                    $match = constant($class . '::ROUTE') ?: null;
+                    $match and $map['~^' . trim($match, '/') . '$~'] = $class;
                 }
             );
         }

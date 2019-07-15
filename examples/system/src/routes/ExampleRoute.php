@@ -7,9 +7,9 @@ namespace Webino;
  * @package app
  * @subpackage examples
  */
-class ExampleRoute extends AbstractRoute implements RegexRouteInterface
+class ExampleRoute extends AbstractRoute
 {
-    const MATCH = '~^example$~';
+    const ROUTE = 'example';
 
     public function onRoute(AbstractRoute $route)
     {

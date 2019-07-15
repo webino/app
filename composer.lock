@@ -979,12 +979,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/each-file-class-implements.git",
-                "reference": "51ebef201b2ddaa3f855dcf25620e372407a9a1f"
+                "reference": "4d5a81e5d02cc8bf943e0c3545a03fb173f46f72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/each-file-class-implements/zipball/51ebef201b2ddaa3f855dcf25620e372407a9a1f",
-                "reference": "51ebef201b2ddaa3f855dcf25620e372407a9a1f",
+                "url": "https://api.github.com/repos/webino/each-file-class-implements/zipball/4d5a81e5d02cc8bf943e0c3545a03fb173f46f72",
+                "reference": "4d5a81e5d02cc8bf943e0c3545a03fb173f46f72",
                 "shasum": ""
             },
             "require": {
@@ -1015,7 +1015,7 @@
                 }
             ],
             "description": "Call callback iterating over class files matching regular expression implementing interface.",
-            "time": "2019-06-27T21:43:06+00:00"
+            "time": "2019-07-15T18:53:22+00:00"
         },
         {
             "name": "webino/event-emitter",

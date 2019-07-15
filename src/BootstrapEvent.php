@@ -39,6 +39,6 @@ class BootstrapEvent extends Event implements
      */
     protected function setup(CoreInterface $core)
     {
-        $core->onHttp($core->get(HttpRegexRouter::class));
+        $core->onHttp($core->get(HttpRouter::class));
     }
 }

@@ -13,14 +13,15 @@
 namespace Webino;
 
 use ArrayIterator;
+use IteratorAggregate;
 
 /**
  * Class AbstractGenerated
  * @package app
  */
 abstract class AbstractGeneratedMap implements
+    IteratorAggregate,
     GeneratedMapInterface,
-    RegexRouteMapInterface,
     InstanceFactoryMethodInterface
 {
     use FilesystemAwareTrait;

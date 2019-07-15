@@ -16,6 +16,7 @@ namespace Webino;
  */
 abstract class AbstractRoute extends Event implements
     InstanceFactoryMethodInterface,
+    RouteInterface,
     AppAwareInterface,
     RequestAwareInterface,
     ResponseAwareInterface

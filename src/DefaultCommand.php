@@ -37,6 +37,7 @@ class DefaultCommand extends AbstractConsoleCommand
             return (string)$command->onCommand($event);
         }
 
+        // summary
         /** @var SummaryCommand $command */
         $summary = $app->make(SummaryCommand::class);
         return (string)$summary->onCommand($event);

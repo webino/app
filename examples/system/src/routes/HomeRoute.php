@@ -25,7 +25,15 @@ class HomeRoute extends AbstractRoute
      */
     public function onRoute(AbstractRoute $route)
     {
-        // TODO
-        return 'Home';
+        $app = $this->getApp();
+
+        /** @var DomView $view */
+        $view = $app->make(DomView::class);
+
+        $view->setTitle('Hello Webino');
+
+        $html = file_get_contents('system/src/html/layout.html');
+
+        return new HtmlResponse($view->render($html));
     }
 }

@@ -20,7 +20,8 @@
     "webino/filesystem": "dev-develop",
     "webino/request": "dev-develop",
     "webino/response": "dev-develop",
-    "webino/console": "dev-develop"
+    "webino/console": "dev-develop",
+    "webino/dom-view": "dev-develop"
   },
   "require-dev": {
     "tracy/tracy": "2.*",

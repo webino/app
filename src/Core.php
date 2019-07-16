@@ -18,7 +18,7 @@ class Core extends AbstractCore
 {
     /**
      * @param BootstrapEventInterface|null $bootstrapEvent
-     * @return AppInterface
+     * @return AppDispatchInterface
      */
     public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppInterface
     {

@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "7d3063d0b3e6a1e777afebd3eb7557c4",
@@ -979,12 +979,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/dom-view.git",
-                "reference": "57a6993e937b7a4daf91a4a8c15a8e26db45944b"
+                "reference": "ed13fd32980e5d25113dba37436a654335afd75e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/dom-view/zipball/57a6993e937b7a4daf91a4a8c15a8e26db45944b",
-                "reference": "57a6993e937b7a4daf91a4a8c15a8e26db45944b",
+                "url": "https://api.github.com/repos/webino/dom-view/zipball/ed13fd32980e5d25113dba37436a654335afd75e",
+                "reference": "ed13fd32980e5d25113dba37436a654335afd75e",
                 "shasum": ""
             },
             "require": {
@@ -1022,7 +1022,7 @@
                 }
             ],
             "description": "Document Object Model view.",
-            "time": "2019-07-16T06:21:48+00:00"
+            "time": "2019-07-16T06:46:32+00:00"
         },
         {
             "name": "webino/each-file-class-implements",

@@ -11,10 +11,16 @@
 namespace Webino;
 
 /**
- * Interface AppInterface
+ * Interface AppDispatchInterface
  * @package app
  */
-interface AppInterface extends AbstractAppInterface
+interface AppDispatchInterface extends AppInterface
 {
-
+    /**
+     * Request responding
+     *
+     * @param RequestInterface|null $request
+     * @return void
+     */
+    public function dispatch(RequestInterface $request = null): void;
 }

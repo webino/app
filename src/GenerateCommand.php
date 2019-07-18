@@ -48,7 +48,7 @@ class GenerateCommand extends AbstractConsoleCommand
         $app = $event->getApp();
         $cli = $event->getConsole();
 
-        $cli->out('Generating...');
+        $cli->out('Generating:');
 
         foreach ($this->getDirs() as $dir) {
             $this->eachFileClassImplements(
@@ -56,12 +56,15 @@ class GenerateCommand extends AbstractConsoleCommand
                 '~/(?!Abstract)[^/]+Map.php$~',
                 __NAMESPACE__,
                 GeneratedMapInterface::class,
-                function (string $class) use ($app) {
+                function (string $class) use ($app, $cli) {
+                    $cli->out(' • ' . $class);
                     /** @var GeneratedMapInterface $regexRouteMap */
                     $generatedMap = $app->get($class);
                     $generatedMap->generate();
                 }
             );
         }
+
+        $cli->out('Done.');
     }
 }

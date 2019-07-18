@@ -13,20 +13,20 @@
 namespace Webino;
 
 /**
- * Class RouteMap
+ * Class ComponentsMap
  * @package app
  */
-class RouteMap extends AbstractGeneratedMap
+class ComponentsMap extends AbstractGeneratedMap
 {
     /**
      * Directory path to application route class files.
      */
-    const CLASS_DIR_PATH = 'system/src/routes';
+    const CLASS_DIR_PATH = 'system/src/components';
 
     /**
      * File path to generated route map data.
      */
-    const FILE_PATH = 'system/data/generated/route-map.php';
+    const FILE_PATH = 'system/data/generated/components-map.php';
 
     /**
      * @return void
@@ -37,12 +37,12 @@ class RouteMap extends AbstractGeneratedMap
         foreach ($this->getDirs() as $dir) {
             $this->eachFileClassImplements(
                 $dir,
-                '~/(?!Abstract)[^/]+Route.php$~',
+                '~/(?!Abstract)[^/]+Component.php$~',
                 __NAMESPACE__,
-                RouteInterface::class,
+                ViewComponentInterface::class,
                 function (string $class) use (&$map) {
-                    $match = constant($class . '::ROUTE') ?: null;
-                    $match and $map['~^' . trim($match, '/') . '$~'] = $class;
+                    $name = constant($class . '::NAME') ?: null;
+                    $name and $map[$name] = $class;
                 }
             );
         }

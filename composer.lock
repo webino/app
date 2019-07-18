@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d3063d0b3e6a1e777afebd3eb7557c4",
+    "content-hash": "0d977c410d9b750521ecbee38bb86f95",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -928,6 +928,58 @@
             "time": "2019-06-17T17:37:00+00:00"
         },
         {
+            "name": "webino/app-interface",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webino/app-interface.git",
+                "reference": "72d1bc853c1466b90d401f06e8d5a63be204d425"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webino/app-interface/zipball/72d1bc853c1466b90d401f06e8d5a63be204d425",
+                "reference": "72d1bc853c1466b90d401f06e8d5a63be204d425",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1",
+                "webino/event-emitter": "dev-develop",
+                "webino/exceptions": "dev-develop",
+                "webino/instance-container": "dev-develop",
+                "webino/request": "dev-develop"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "0.*",
+                "squizlabs/php_codesniffer": "3.*",
+                "tracy/tracy": "2.*",
+                "webino/develop": "dev-develop",
+                "webino/testing": "dev-develop"
+            },
+            "suggest": {
+                "tracy/tracy": "Better debug."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webino\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Bacinsky",
+                    "email": "peter@bacinsky.sk"
+                }
+            ],
+            "description": "PHP application interface.",
+            "time": "2019-07-18T00:26:10+00:00"
+        },
+        {
             "name": "webino/console",
             "version": "dev-develop",
             "source": {
@@ -979,19 +1031,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/dom-view.git",
-                "reference": "ed13fd32980e5d25113dba37436a654335afd75e"
+                "reference": "71adc9fc44d9c221f19a1ddcc153d788ca1bc8d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/dom-view/zipball/ed13fd32980e5d25113dba37436a654335afd75e",
-                "reference": "ed13fd32980e5d25113dba37436a654335afd75e",
+                "url": "https://api.github.com/repos/webino/dom-view/zipball/71adc9fc44d9c221f19a1ddcc153d788ca1bc8d1",
+                "reference": "71adc9fc44d9c221f19a1ddcc153d788ca1bc8d1",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1",
+                "webino/app-interface": "dev-develop",
                 "webino/event-emitter": "dev-develop",
                 "webino/exceptions": "dev-develop",
-                "webino/instance-container": "dev-develop"
+                "webino/instance-container": "dev-develop",
+                "webino/request": "dev-develop@dev"
             },
             "require-dev": {
                 "phpstan/phpstan": "0.*",
@@ -1022,7 +1076,7 @@
                 }
             ],
             "description": "Document Object Model view.",
-            "time": "2019-07-16T06:46:32+00:00"
+            "time": "2019-07-18T07:16:23+00:00"
         },
         {
             "name": "webino/each-file-class-implements",
@@ -1074,12 +1128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/event-emitter.git",
-                "reference": "021f860b113da1c08447ab16f4f6c6154d56d76e"
+                "reference": "3eebe8ac94df9e35718644620caf0442a2d2a31a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/event-emitter/zipball/021f860b113da1c08447ab16f4f6c6154d56d76e",
-                "reference": "021f860b113da1c08447ab16f4f6c6154d56d76e",
+                "url": "https://api.github.com/repos/webino/event-emitter/zipball/3eebe8ac94df9e35718644620caf0442a2d2a31a",
+                "reference": "3eebe8ac94df9e35718644620caf0442a2d2a31a",
                 "shasum": ""
             },
             "require": {
@@ -1111,7 +1165,7 @@
                 }
             ],
             "description": "Event Emitter implementation.",
-            "time": "2019-07-02T14:26:49+00:00"
+            "time": "2019-07-18T02:34:25+00:00"
         },
         {
             "name": "webino/exceptions",
@@ -2327,16 +2381,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.6.3",
+            "version": "v2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "7613eeff265b49a865add75360d1962449e3c12f"
+                "reference": "cad2ec2c40cee828ce5538a4bc5bbde7045a7c1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/7613eeff265b49a865add75360d1962449e3c12f",
-                "reference": "7613eeff265b49a865add75360d1962449e3c12f",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/cad2ec2c40cee828ce5538a4bc5bbde7045a7c1b",
+                "reference": "cad2ec2c40cee828ce5538a4bc5bbde7045a7c1b",
                 "shasum": ""
             },
             "require": {
@@ -2390,7 +2444,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2019-06-18T12:20:11+00:00"
+            "time": "2019-07-16T14:23:55+00:00"
         },
         {
             "name": "webino/develop",
@@ -2549,6 +2603,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "webino/app-interface": 20,
         "webino/exceptions": 20,
         "webino/var-export-php": 20,
         "webino/recursive-directory-regex-iterator": 20,

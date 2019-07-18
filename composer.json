@@ -43,6 +43,7 @@
       "Webino\\": [
         "tests/src",
         "examples/system/src/commands",
+        "examples/system/src/components",
         "examples/system/src/routes"
       ]
     }

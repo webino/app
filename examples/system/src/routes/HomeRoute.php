@@ -27,8 +27,12 @@ class HomeRoute extends AbstractRoute
     {
         $app = $this->getApp();
 
+        $cMap = $app->get(ComponentsMap::class);
+
+        $components = new ViewComponents($cMap);
+
         /** @var DomView $view */
-        $view = $app->make(DomView::class);
+        $view = $app->make(DomView::class, $components);
 
         $view->setTitle('Hello Webino');
 

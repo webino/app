@@ -14,7 +14,7 @@ namespace Webino;
  * Class App
  * @package app
  */
-final class App extends AbstractApp implements AppInterface
+final class App extends AbstractApp implements AppDispatchInterface
 {
     /**
      * Request responding

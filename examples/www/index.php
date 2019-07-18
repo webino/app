@@ -17,12 +17,13 @@ require __DIR__ . '/../../vendor/autoload.php';
 chdir(__DIR__ . '/..');
 
 
-class TestComponent
+class TestComponent extends AbstractViewComponent
 {
     public const XPATH = '//component';
 
-    public function onRender(ViewElement $node)
+    public function onRender(ViewRenderEventInterface $event)
     {
+        $node = $event->getNode();
         $newNode = $node->ownerDocument->createElement('div');
         //$newNode->nodeValue = 'Hello';
 
@@ -33,14 +34,15 @@ class TestComponent
     }
 }
 
-class TestSubComponent
+class TestSubComponent extends AbstractViewComponent
 {
     public const NAME = 'sub-component';
 
     public const XPATH = '//sub-component';
 
-    public function onRender(ViewElement $node)
+    public function onRender(ViewRenderEventInterface $event)
     {
+        $node = $event->getNode();
         $newNode = $node->ownerDocument->createElement('button');
         $newNode->nodeValue = 'Click Me!';
         $node->parentNode->replaceChild($newNode, $node);

@@ -20,7 +20,7 @@ use Tester\Environment;
 Environment::setup();
 
 
-$core = new AbstractCore;
+$core = new BaseCore;
 $app = $core->bootstrap();
 
 

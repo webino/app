@@ -14,13 +14,13 @@ namespace Webino;
  * Class Core
  * @package app
  */
-class Core extends AbstractCore
+class Core extends BaseCore
 {
     /**
      * @param BootstrapEventInterface|null $bootstrapEvent
      * @return AppDispatchInterface
      */
-    public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppInterface
+    public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppDispatchInterface
     {
         $this->onConsole($this->get(ConsoleBootstrapInterface::class));
         return parent::bootstrap($bootstrapEvent);

@@ -16,10 +16,9 @@ namespace Webino;
  */
 class BootstrapEvent extends Event implements
     BootstrapEventInterface,
-    InstanceFactoryMethodInterface,
-    CoreAwareInterface
+    InstanceFactoryMethodInterface
 {
-    use CoreAwareTrait;
+    use CoreAwareEventTrait;
 
     /**
      * @param CreateInstanceEventInterface $event

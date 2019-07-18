@@ -11,12 +11,12 @@
  * @license     BSD-3-Clause
  */
 
-use Webino\AbstractCore;
+use Webino\BaseCore;
 
 Tester\Environment::setup();
 
 
-$core = new AbstractCore;
+$core = new BaseCore;
 
 $app = $core->bootstrap();
 

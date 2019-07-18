@@ -21,7 +21,7 @@ class DispatchEvent extends Event implements
     RequestAwareInterface,
     ResponseAwareInterface
 {
-    use AppAwareTrait;
+    use AppAwareEventTrait;
     use RequestAwareTrait;
     use ResponseAwareTrait;
 

@@ -11,6 +11,7 @@
   ],
   "require": {
     "php": "~7.1",
+    "webino/app-interface": "dev-develop",
     "webino/exceptions": "dev-develop",
     "webino/var-export-php": "dev-develop",
     "webino/recursive-directory-regex-iterator": "dev-develop",

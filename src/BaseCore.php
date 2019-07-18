@@ -11,10 +11,10 @@
 namespace Webino;
 
 /**
- * Class AbstractCore
+ * Class BaseCore
  * @package app
  */
-abstract class AbstractCore extends AbstractApp implements CoreInterface
+class BaseCore extends AbstractApp implements CoreInterface
 {
     /**
      * Set bootstrap event handler.
@@ -32,11 +32,11 @@ abstract class AbstractCore extends AbstractApp implements CoreInterface
      * Application bootstrapping
      *
      * @param BootstrapEventInterface|null $bootstrapEvent
-     * @return AppInterface
+     * @return AppDispatchInterface
      */
-    public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppInterface
+    public function bootstrap(BootstrapEventInterface $bootstrapEvent = null): AppDispatchInterface
     {
-        /** @var AppInterface $app */
+        /** @var AppDispatchInterface $app */
         $app = $this->make(AppInterface::class);
         $app->setEventDispatcher($this->getEventDispatcher());
         $app->emit($event ?? $app->make(BootstrapEventInterface::class, $this));

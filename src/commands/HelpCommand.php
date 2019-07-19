@@ -25,7 +25,7 @@ class HelpCommand extends AbstractConsoleCommand
      */
     public function onCommand(ConsoleEventInterface $event)
     {
-        // TODO
+        // TODO help command
 
         $app = $event->getApp();
         /** @var SummaryCommand $defaultCommand */

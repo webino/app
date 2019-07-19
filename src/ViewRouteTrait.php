@@ -39,24 +39,25 @@ trait ViewRouteTrait
         /** @var DomView $view */
         $view = $app->make(DomView::class, $components);
 
-        // TODO title
-        $view->setTitle('Hello Webino');
-
         /** @var ViewRenderEventInterface $event */
         $event = $app->make(ViewRenderEventInterface::class, $route);
 
-        if ($this instanceof RouteInterface) {
-            $event->setRoute($this);
-        }
-
-        // layout template
+        // set view route
         if ($this instanceof ViewRouteInterface) {
-            // TODO templates service
-            $html = file_get_contents($this::LAYOUT);
+            $event->setRoute($this);
+
+            // route title
+            $view->setTitle($this::TITLE);
+
+            /** @var HtmlTemplatesInterface $filesystem */
+            $templates = $app->get(HtmlTemplatesInterface::class);
+
+            // layout template
+            $html = $templates->read($this::LAYOUT);
             $event->setLayout($html);
 
-            // TODO templates service
-            $html = file_get_contents($this::TEMPLATE);
+            // content template
+            $html = $templates->read($this::TEMPLATE);
             $event->setContent($html);
         }
 

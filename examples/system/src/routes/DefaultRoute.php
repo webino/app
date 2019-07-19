@@ -17,5 +17,7 @@ namespace Webino;
  */
 class DefaultRoute extends HomeRoute
 {
+    public const TITLE = '404 Not Found';
+
     public const TEMPLATE = 'system/src/html/content/404.html';
 }

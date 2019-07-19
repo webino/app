@@ -17,8 +17,6 @@ namespace Webino;
  */
 class ExampleCommand extends AbstractConsoleCommand
 {
-    // TODO
-
     public const NAME = 'example';
 
     public const CATEGORY = 'examples';

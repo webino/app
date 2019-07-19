@@ -17,6 +17,8 @@ namespace Webino;
  */
 class HomeRoute extends AbstractViewRoute
 {
+    public const TITLE = 'Hello Webino';
+
     public const ROUTE = '/';
 
     public const LAYOUT = 'system/src/html/layout.html';

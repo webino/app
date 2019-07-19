@@ -28,6 +28,8 @@ abstract class AbstractRoute extends Event implements
     use ResponseAwareEventTrait;
 
     /**
+     * Route factory method.
+     *
      * @param CreateInstanceEventInterface $event
      * @return AbstractRoute
      */
@@ -40,6 +42,8 @@ abstract class AbstractRoute extends Event implements
     }
 
     /**
+     * Creates new route.
+     *
      * @param CreateInstanceEventInterface $event
      * @return AbstractRoute
      */
@@ -49,7 +53,11 @@ abstract class AbstractRoute extends Event implements
         return new static($params[0] ?? $event);
     }
 
-    // TODO
+    /**
+     * Returns route URL.
+     *
+     * @return string
+     */
     public function getUrl(): string
     {
         $request = $this->getHttpRequest();
@@ -58,6 +66,8 @@ abstract class AbstractRoute extends Event implements
     }
 
     /**
+     * Route handler.
+     *
      * @param AbstractRoute $route
      */
     public function onRoute(AbstractRoute $route)

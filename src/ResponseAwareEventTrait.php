@@ -11,10 +11,10 @@
 namespace Webino;
 
 /**
- * Trait ResponseAwareTrait
+ * Trait ResponseAwareEventTrait
  * @package app
  */
-trait ResponseAwareTrait
+trait ResponseAwareEventTrait
 {
     /**
      * Returns PHP environment execution response.

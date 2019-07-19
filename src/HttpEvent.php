@@ -16,6 +16,8 @@ namespace Webino;
  */
 class HttpEvent extends DispatchEvent implements HttpEventInterface
 {
+    use HttpRequestAwareEventTrait;
+
     /**
      * @param CreateInstanceEventInterface $event
      * @return HttpEvent
@@ -23,21 +25,5 @@ class HttpEvent extends DispatchEvent implements HttpEventInterface
     public static function create(CreateInstanceEventInterface $event)
     {
         return new self(...$event->getParameters());
-    }
-
-    /**
-     * Returns HTTP request.
-     *
-     * @return HttpRequestInterface
-     * @throws NotConsoleRequestException
-     */
-    public function getHttpRequest(): HttpRequestInterface
-    {
-        $request = parent::getRequest();
-        if ($request instanceof HttpRequestInterface) {
-            return $request;
-        }
-
-        throw new NotConsoleRequestException;
     }
 }

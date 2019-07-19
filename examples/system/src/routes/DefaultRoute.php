@@ -11,15 +11,10 @@
 namespace Webino;
 
 /**
- * Interface RequestAwareInterface
+ * Class DefaultRoute
  * @package app
  */
-interface RequestAwareInterface
+class DefaultRoute extends HomeRoute
 {
-    /**
-     * Returns PHP environment execution request.
-     *
-     * @return RequestInterface
-     */
-    public function getRequest(): RequestInterface;
+    public const TEMPLATE = 'system/src/html/content/404.html';
 }

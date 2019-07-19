@@ -1031,12 +1031,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/dom-view.git",
-                "reference": "71adc9fc44d9c221f19a1ddcc153d788ca1bc8d1"
+                "reference": "08cb7942df579a403cf0c5cf2099b5a03061f5e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/dom-view/zipball/71adc9fc44d9c221f19a1ddcc153d788ca1bc8d1",
-                "reference": "71adc9fc44d9c221f19a1ddcc153d788ca1bc8d1",
+                "url": "https://api.github.com/repos/webino/dom-view/zipball/08cb7942df579a403cf0c5cf2099b5a03061f5e4",
+                "reference": "08cb7942df579a403cf0c5cf2099b5a03061f5e4",
                 "shasum": ""
             },
             "require": {
@@ -1076,7 +1076,7 @@
                 }
             ],
             "description": "Document Object Model view.",
-            "time": "2019-07-18T07:16:23+00:00"
+            "time": "2019-07-19T21:50:30+00:00"
         },
         {
             "name": "webino/each-file-class-implements",
@@ -1353,17 +1353,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webino/request.git",
-                "reference": "6a6555150619a57e866aafed9c8dfd8aef8abcb5"
+                "reference": "e059c0e58ab33af47bd4814a215ecdac839c0f3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webino/request/zipball/6a6555150619a57e866aafed9c8dfd8aef8abcb5",
-                "reference": "6a6555150619a57e866aafed9c8dfd8aef8abcb5",
+                "url": "https://api.github.com/repos/webino/request/zipball/e059c0e58ab33af47bd4814a215ecdac839c0f3c",
+                "reference": "e059c0e58ab33af47bd4814a215ecdac839c0f3c",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1",
                 "webino/event-emitter": "dev-develop",
+                "webino/exceptions": "dev-develop",
                 "webino/instance-container": "dev-develop"
             },
             "require-dev": {
@@ -1394,7 +1395,7 @@
                 }
             ],
             "description": "Simple PHP environment request implementation.",
-            "time": "2019-07-15T22:25:25+00:00"
+            "time": "2019-07-19T12:40:06+00:00"
         },
         {
             "name": "webino/response",

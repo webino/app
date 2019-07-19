@@ -17,14 +17,7 @@ namespace Webino;
  */
 class ExampleTestRoute extends ExampleRoute
 {
-    const ROUTE = parent::ROUTE . '/test';
+    public const ROUTE = parent::ROUTE . '/test';
 
-    /**
-     * @param AbstractRoute $route
-     * @return string|void
-     */
-    public function onRoute(AbstractRoute $route)
-    {
-        return 'Example Test';
-    }
+    public const TEMPLATE = 'system/src/html/content/example.html';
 }

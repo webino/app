@@ -15,16 +15,9 @@ namespace Webino;
  * @package app
  * @subpackage examples
  */
-class ExampleRoute extends AbstractRoute
+class ExampleRoute extends HomeRoute
 {
-    const ROUTE = 'example';
+    public const ROUTE = 'example';
 
-    /**
-     * @param AbstractRoute $route
-     * @return string|void
-     */
-    public function onRoute(AbstractRoute $route)
-    {
-        return 'Example';
-    }
+    public const TEMPLATE = 'system/src/html/content/example.html';
 }

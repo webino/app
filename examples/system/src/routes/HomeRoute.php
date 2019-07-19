@@ -15,29 +15,11 @@ namespace Webino;
  * @package app
  * @subpackage examples
  */
-class HomeRoute extends AbstractRoute
+class HomeRoute extends AbstractViewRoute
 {
-    const ROUTE = '/';
+    public const ROUTE = '/';
 
-    /**
-     * @param AbstractRoute $route
-     * @return string|void
-     */
-    public function onRoute(AbstractRoute $route)
-    {
-        $app = $this->getApp();
+    public const LAYOUT = 'system/src/html/layout.html';
 
-        $cMap = $app->get(ComponentsMap::class);
-
-        $components = new ViewComponents($cMap);
-
-        /** @var DomView $view */
-        $view = $app->make(DomView::class, $components);
-
-        $view->setTitle('Hello Webino');
-
-        $html = file_get_contents('system/src/html/layout.html');
-
-        return new HtmlResponse($view->render($html));
-    }
+    public const TEMPLATE = 'system/src/html/content/home.html';
 }

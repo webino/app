@@ -19,11 +19,13 @@ abstract class AbstractRoute extends Event implements
     RouteInterface,
     AppAwareInterface,
     RequestAwareInterface,
+    HttpRequestAwareInterface,
     ResponseAwareInterface
 {
     use AppAwareEventTrait;
-    use RequestAwareTrait;
-    use ResponseAwareTrait;
+    use RequestAwareEventTrait;
+    use HttpRequestAwareEventTrait;
+    use ResponseAwareEventTrait;
 
     /**
      * @param CreateInstanceEventInterface $event
@@ -44,7 +46,15 @@ abstract class AbstractRoute extends Event implements
     public static function createRoute(CreateInstanceEventInterface $event): AbstractRoute
     {
         $params = $event->getParameters();
-        return new static($params[0] ?? null);
+        return new static($params[0] ?? $event);
+    }
+
+    // TODO
+    public function getUrl(): string
+    {
+        $request = $this->getHttpRequest();
+        $url = ($request ? $request->getBasePath() . '/' : '') . $this::ROUTE;
+        return '/' . trim($url, '/');
     }
 
     /**

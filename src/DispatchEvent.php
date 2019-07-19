@@ -22,8 +22,8 @@ class DispatchEvent extends Event implements
     ResponseAwareInterface
 {
     use AppAwareEventTrait;
-    use RequestAwareTrait;
-    use ResponseAwareTrait;
+    use RequestAwareEventTrait;
+    use ResponseAwareEventTrait;
 
     /**
      * @param CreateInstanceEventInterface $event

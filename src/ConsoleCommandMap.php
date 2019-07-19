@@ -26,7 +26,7 @@ class ConsoleCommandMap extends AbstractGeneratedMap
     /**
      * File path to generated console command map data.
      */
-    const FILE_PATH = 'system/data/generated/console-command-map.php';
+    const FILE_PATH = 'system/data/generated/console-commands.php';
 
     /**
      * @return void

@@ -33,9 +33,9 @@ class GenerateCommand extends AbstractConsoleCommand
     {
         return [
             'system/src',
-            __DIR__ . '/../src',
-            __DIR__ . '/../vendor',
-            __DIR__ . '/../../../../../vendor',
+            __DIR__ . '/../../src',
+            __DIR__ . '/../../vendor',
+            __DIR__ . '/../../../../../../vendor',
         ];
     }
 

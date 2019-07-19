@@ -13,6 +13,7 @@ namespace Webino;
 /**
  * Class DefaultRoute
  * @package app
+ * @sub-package examples
  */
 class DefaultRoute extends HomeRoute
 {

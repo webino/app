@@ -26,7 +26,7 @@ class RouteMap extends AbstractGeneratedMap
     /**
      * File path to generated route map data.
      */
-    const FILE_PATH = 'system/data/generated/route-map.php';
+    const FILE_PATH = 'system/data/generated/routes.php';
 
     /**
      * @return void

@@ -26,7 +26,7 @@ class ComponentsMap extends AbstractGeneratedMap
     /**
      * File path to generated route map data.
      */
-    const FILE_PATH = 'system/data/generated/components-map.php';
+    const FILE_PATH = 'system/data/generated/components.php';
 
     /**
      * @return void

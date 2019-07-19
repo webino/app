@@ -13,7 +13,6 @@ namespace Webino;
 /**
  * Class RouteComponent
  * @package app
- * @sub-package examples
  */
 class RouteComponent extends AbstractViewComponent
 {
@@ -36,7 +35,7 @@ class RouteComponent extends AbstractViewComponent
         $newNode = $node->ownerDocument->createElement('a');
         $newNode->nodeValue = $node->nodeValue;
 
-        $routeClass = '\\' == $routeClassName[0] ? $routeClassName : 'Webino\\' . $routeClassName;
+        $routeClass = '\\' == $routeClassName[0] ? $routeClassName : __NAMESPACE__ . '\\' . $routeClassName;
         $route = $app->make($routeClass, $event);
 
         $href = $route->getUrl();
